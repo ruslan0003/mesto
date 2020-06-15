@@ -7,4 +7,24 @@
   background: none;
   cursor: pointer;
   margin: 75px 0 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+
+  .profile__add-button {
+    min-height: 50px;
+    min-width: 282px;
+    margin-top: 36px;
+  }
+}
+
+
+@media screen and (max-width: 320px) {
+
+  .profile__add-button {
+    margin: 36px auto 0 auto;
+  }
 }

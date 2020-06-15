@@ -1,5 +1,12 @@
 @import url(./__copyright/footer__copyright.css);
 .footer {
   display: flex;
+  flex-wrap: wrap;
   padding-bottom: 60px;
+}
+
+@media screen and (max-width: 320px) {
+  .footer {
+    padding-bottom: 36px;
+  }
 }

@@ -5,3 +5,10 @@
   margin: 0;
   padding: 0;
 }
+
+@media screen and (max-width: 320px) {
+  .footer__copyright {
+    padding: 0 19px 0 19px;
+    box-sizing: border-box;
+  }
+}

@@ -1,6 +1,21 @@
 .page {
     background: #000000;
     max-width: 882px;
+    min-width: 300px;
     font-family: 'Inter', 'Arial', sans-serif;
+    font-style: normal;
     margin: 0 auto;
+}
+
+@media screen and (max-width: 1024px) {
+  .page {
+    padding: 0 30px;
+    box-sizing: border-box;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .page {
+    padding: 0;
+  }
 }
