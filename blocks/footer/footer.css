@@ -1,1 +1,5 @@
 @import url(./__copyright/footer__copyright.css);
+.footer {
+  display: flex;
+  padding-bottom: 60px;
+}
