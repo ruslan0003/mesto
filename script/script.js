@@ -36,7 +36,7 @@ function formSubmitHandler (evt) {
     // Вставьте новые значения с помощью textContent
 
     if (nameInputValue == "") {
-      nameInputField.textContent = "Жан-Жак Кусто";
+      nameInputField.textContent = "Жак-Ив Кусто";
       jobInputField.textContent = "Исследователь океана";
     }
 

@@ -15,4 +15,9 @@
   box-shadow: none;
   border: none;
   cursor: pointer;
+  transition: background-color 0.2s linear;
+}
+
+.pop-up__submit-button:hover {
+  background-color: rgba(0, 0, 0, .8);
 }
