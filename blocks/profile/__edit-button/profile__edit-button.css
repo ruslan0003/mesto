@@ -11,6 +11,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  outline: none;
+  transition: opacity 0.2s linear;
+}
+
+.profile__edit-button:focus {
+  outline: none;
+  border-radius: 0;
+}
+
+.profile__edit-button:hover {
+  opacity: .6;
 }
 
 @media screen and (max-width: 615px) {

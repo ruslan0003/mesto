@@ -1,6 +1,11 @@
 .profile__edit-button-icon {
   min-width: 10px;
   max-height: 10px;
+  transition: opacity 0.2s linear;
+}
+
+.profile__edit-button-icon:hover {
+  opacity: .6;
 }
 
 @media screen and (max-width: 425px) {
