@@ -12,6 +12,11 @@ let jobOutput = document.querySelector('.profile__position');
 
 const popupToggle = function () {
   popup.classList.toggle('pop-up_opened');
+
+  if (popup.classList.contains('pop-up_opened')) {
+    nameInput.value = nameOutput.textContent;
+    jobInput.value = jobOutput.textContent;
+  }
 }
 
 popupOpen.addEventListener('click', popupToggle);
@@ -24,9 +29,9 @@ function formSubmitHandler (evt) {
     let nameInputValue = nameInput.value;
     let jobInputValue = jobInput.value;
 
-    if (nameInputValue == "") {
-      nameOutput.textContent = "Жак-Ив Кусто";
-      jobOutput.textContent = "Исследователь океана";
+    if (nameInputValue == "", jobInputValue == "") {
+      nameInput.value = nameOutput.textContent;
+      jobInput.value = jobOutput.textContent;
     }
 
     else {
@@ -38,4 +43,3 @@ function formSubmitHandler (evt) {
 
 formElement.addEventListener('submit', formSubmitHandler);
 popupSubmitClose.addEventListener('click', popupToggle);
-
