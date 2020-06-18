@@ -1,0 +1,16 @@
+.element__like-button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: none;
+  box-shadow: none;
+  transition: opacity 0.2s linear;
+}
+
+.element__like-button:hover {
+  opacity: .6;
+}
+
+.element__like-button:focus {
+  outline: none;
+}

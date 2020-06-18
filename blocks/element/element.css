@@ -2,6 +2,7 @@
 @import url('./__title-background/element__title-background.css');
 @import url('./__title/element__title.css');
 @import url('./__photo/element__photo.css');
+@import url('./__like-button/element__like-button.css');
 
 .element {
   display: flex;
