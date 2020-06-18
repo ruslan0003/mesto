@@ -41,5 +41,15 @@ function formSubmitHandler (evt) {
 
   }
 
+function ClearNameInputOnClick () {
+  nameInput.value = "";
+}
+
+function ClearJobInputOnClick () {
+  jobInput.value = "";
+}
+
 formElement.addEventListener('submit', formSubmitHandler);
 popupSubmitClose.addEventListener('click', popupToggle);
+nameInput.addEventListener('focus', ClearNameInputOnClick);
+jobInput.addEventListener('focus', ClearJobInputOnClick);

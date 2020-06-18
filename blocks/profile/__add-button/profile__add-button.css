@@ -6,7 +6,7 @@
   max-height: 50px;
   background: none;
   cursor: pointer;
-  margin: 75px 0 0 0;
+  margin: 75px auto 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
