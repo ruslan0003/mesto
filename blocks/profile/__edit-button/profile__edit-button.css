@@ -16,7 +16,6 @@
 }
 
 .profile__edit-button:focus {
-  outline: none;
   border-radius: 0;
 }
 
