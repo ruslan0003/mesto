@@ -29,27 +29,10 @@ function formSubmitHandler (evt) {
     let nameInputValue = nameInput.value;
     let jobInputValue = jobInput.value;
 
-    if (nameInputValue == "", jobInputValue == "") {
-      nameInput.value = nameOutput.textContent;
-      jobInput.value = jobOutput.textContent;
-    }
-
-    else {
-      nameOutput.textContent = nameInputValue;
-      jobOutput.textContent = jobInputValue;
-    }
+    nameOutput.textContent = nameInputValue;
+    jobOutput.textContent = jobInputValue;
 
   }
 
-function ClearNameInputOnClick () {
-  nameInput.value = "";
-}
-
-function ClearJobInputOnClick () {
-  jobInput.value = "";
-}
-
 formElement.addEventListener('submit', formSubmitHandler);
 popupSubmitClose.addEventListener('click', popupToggle);
-nameInput.addEventListener('focus', ClearNameInputOnClick);
-jobInput.addEventListener('focus', ClearJobInputOnClick);
