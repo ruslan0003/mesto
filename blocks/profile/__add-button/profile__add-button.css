@@ -6,7 +6,7 @@
   max-height: 50px;
   background: none;
   cursor: pointer;
-  margin: 75px auto 0 auto;
+  margin: 75px 0 0 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,7 +27,7 @@
   .profile__add-button {
     min-height: 50px;
     min-width: 282px;
-    margin-top: 36px;
+    margin: 36px auto 0 auto;
   }
 }
 
