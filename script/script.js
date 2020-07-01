@@ -36,3 +36,50 @@ function formSubmitHandler (evt) {
 
 formElement.addEventListener('submit', formSubmitHandler);
 popupSubmitClose.addEventListener('click', popupToggle);
+
+//открытие и закрытие попапа "Добавить фото"
+
+const elAdd = document.querySelector('.element-add');
+const elAddOpen = document.querySelector('.profile__add-button');
+const elAddClose = elAdd.querySelector('.element-add__close-button');
+const elAddSubmit = elAdd.querySelector('.element-add__submit-button');
+
+const elAddToggle = function() {
+  elAdd.classList.toggle('element-add_opened');
+}
+
+elAddOpen.addEventListener('click', elAddToggle);
+elAddClose.addEventListener('click', elAddToggle);
+
+//исходный массив элементов с фотографиями
+
+const initialElements = [
+  {
+      name: 'Архыз',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+      name: 'Челябинская область',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+      name: 'Иваново',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+      name: 'Камчатка',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+      name: 'Холмогорский район',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+      name: 'Байкал',
+      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+//отображение исходного массива фотографий на странице
+
+
