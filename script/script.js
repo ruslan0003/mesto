@@ -82,10 +82,15 @@ const initialElements = [
 
 //отображение исходного массива фотографий на странице
 
+const elAddForm = document.querySelector('.element-add__form');
+const elAddFormSubmitClose = elAddForm.querySelector('.element-add__submit-button');
+let elTitleInput = elAddForm.querySelector('.element-add__form-field_input_title');
+let elImageInput = elAddForm.querySelector('.element-add__form-field_input_url');
+
 const elTemplate = document.querySelector('.element-template').content;
 const elList = document.querySelector('.elements');
 
-function addInitElements(title, url) {
+function addElements(title, url) {
 
 // клонируем содержимое тега template
 const elItem = elTemplate.cloneNode(true);
@@ -95,14 +100,23 @@ elItem.querySelector('.element__photo').src = url;
 elItem.querySelector('.element__title').textContent = title;
 
 // отображаем на странице
-elList.append(elItem);
+elList.prepend(elItem);
 }
 
 initialElements.forEach(function(item, index) {
-  addInitElements(initialElements[index].title, initialElements[index].url);
+  addElements(initialElements[index].title, initialElements[index].url);
 });
-
 
 //добавление пользовательских фотографий
 
-const elAddForm = document.querySelector('.element-add')
+function elAddFormSubmitHandler (evt) {
+    evt.preventDefault();
+
+    let elTitleInputValue = elTitleInput.value;
+    let elImageInputValue = elImageInput.value;
+
+    addElements(elTitleInputValue, elImageInputValue);
+}
+
+elAddForm.addEventListener('submit', elAddFormSubmitHandler);
+elAddFormSubmitClose.addEventListener('click', elAddToggle);
