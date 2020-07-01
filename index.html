@@ -31,66 +31,8 @@
     </section>
 
     <ul class="elements">
-      <li class="element">
-        <img class="element__photo" src="images/kirill-pershin-karachaevsk.jpg" alt="Карачаевск">
-        <div class="element__title-background">
-          <h3 class="element__title">Карачаевск</h3>
-          <button class="element__like-button">
-            <img class="element__like-icon" src="images/heart-icon.svg" alt="Иконка кнопки лайк">
-          </button>
-        </div>
-      </div>
 
-      <li class="element">
-        <img class="element__photo" src="images/kirill-pershin-elbrus.png" alt="Эльбрус">
-        <div class="element__title-background">
-          <h3 class="element__title">Эльбрус</h3>
-          <button class="element__like-button">
-            <img class="element__like-icon" src="images/heart-icon.svg" alt="Иконка кнопки лайк">
-          </button>
-        </div>
-      </div>
-
-      <li class="element">
-        <img class="element__photo" src="images/kirill-pershin-dombai.png" alt="Домбай">
-        <div class="element__title-background">
-          <h3 class="element__title">Домбай</h3>
-          <button class="element__like-button">
-            <img class="element__like-icon" src="images/heart-icon.svg" alt="Иконка кнопки лайк">
-          </button>
-        </div>
-      </div>
-
-      <li class="element">
-        <img class="element__photo" src="images/kirill-pershin-elbrus.png" alt="Эльбрус">
-        <div class="element__title-background">
-          <h3 class="element__title">Эльбрус</h3>
-          <button class="element__like-button">
-            <img class="element__like-icon" src="images/heart-icon.svg" alt="Иконка кнопки лайк">
-          </button>
-        </div>
-      </div>
-
-      <li class="element">
-        <img class="element__photo" src="images/kirill-pershin-dombai.png" alt="Домбай">
-        <div class="element__title-background">
-          <h3 class="element__title">Домбай</h3>
-          <button class="element__like-button">
-            <img class="element__like-icon" src="images/heart-icon.svg" alt="Иконка кнопки лайк">
-          </button>
-        </div>
-      </div>
-
-      <li class="element">
-        <img class="element__photo" src="images/kirill-pershin-karachaevsk.jpg" alt="Карачаевск">
-        <div class="element__title-background">
-          <h3 class="element__title">Карачаево-Черкессия</h3>
-          <button class="element__like-button">
-            <img class="element__like-icon" src="images/heart-icon.svg" alt="Иконка кнопки лайк">
-          </button>
-        </div>
-      </div>
-    </section>
+    </ul>
   </main>
 
   <footer class="footer">
@@ -118,12 +60,25 @@
       </button>
         <h3 class="element-add__title">Новое место</h3>
         <form class="element-add__form" name="edit-form">
-          <input class="element-add__form-field element-add__form-field_input_name" type="text" name="name-input" placeholder="Название">
-          <input class="element-add__form-field element-add__form-field_input_url" type="text" name="name-job" placeholder="Ссылка на картинку">
+          <input class="element-add__form-field element-add__form-field_input_title" type="text" name="title-input" placeholder="Название">
+          <input class="element-add__form-field element-add__form-field_input_url" type="text" name="url-input" placeholder="Ссылка на картинку">
           <button class="element-add__submit-button" type="submit" value="Создать">Создать</button>
         </form>
     </div>
   </section>
+
+  <template class="element-template">
+   <li class="element">
+      <img class="element__photo">
+      <div class="element__title-background">
+        <h3 class="element__title"></h3>
+        <button class="element__like-button">
+          <img class="element__like-icon" src="images/heart-icon.svg" alt="Иконка кнопки лайк">
+        </button>
+    </div>
+  </template>
+
+
 
   <script type="text/javascript" src="script/script.js"></script>
 </body>

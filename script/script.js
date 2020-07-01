@@ -55,31 +55,54 @@ elAddClose.addEventListener('click', elAddToggle);
 
 const initialElements = [
   {
-      name: 'Архыз',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+      title: 'Архыз',
+      url: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
   },
   {
-      name: 'Челябинская область',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+      title: 'Челябинская область',
+      url: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
   },
   {
-      name: 'Иваново',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+      title: 'Иваново',
+      url: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
   },
   {
-      name: 'Камчатка',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+      title: 'Камчатка',
+      url: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
   },
   {
-      name: 'Холмогорский район',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+      title: 'Холмогорский район',
+      url: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
   },
   {
-      name: 'Байкал',
-      link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+      title: 'Байкал',
+      url: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
 
 //отображение исходного массива фотографий на странице
 
+const elTemplate = document.querySelector('.element-template').content;
+const elList = document.querySelector('.elements');
 
+function addInitElements(title, url) {
+
+// клонируем содержимое тега template
+const elItem = elTemplate.cloneNode(true);
+
+// наполняем содержимым
+elItem.querySelector('.element__photo').src = url;
+elItem.querySelector('.element__title').textContent = title;
+
+// отображаем на странице
+elList.append(elItem);
+}
+
+initialElements.forEach(function(item, index) {
+  addInitElements(initialElements[index].title, initialElements[index].url);
+});
+
+
+//добавление пользовательских фотографий
+
+const elAddForm = document.querySelector('.element-add')
