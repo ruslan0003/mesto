@@ -101,6 +101,23 @@ elItem.querySelector('.element__title').textContent = title;
 
 // отображаем на странице
 elList.prepend(elItem);
+
+//кнопка удаления карточки
+
+const deleteButton = document.querySelector('.element__delete-button');
+
+//функция удаления
+
+function deleteElement (evt) {
+
+  const element = evt.target.closest('.element');
+
+  element.remove();
+}
+
+//обработчик кнопки удалить
+
+deleteButton.addEventListener('click', deleteElement);
 }
 
 initialElements.forEach(function(item, index) {
@@ -120,3 +137,5 @@ function elAddFormSubmitHandler (evt) {
 
 elAddForm.addEventListener('submit', elAddFormSubmitHandler);
 elAddFormSubmitClose.addEventListener('click', elAddToggle);
+
+

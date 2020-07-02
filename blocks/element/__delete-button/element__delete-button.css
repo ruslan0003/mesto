@@ -1,0 +1,19 @@
+.element__delete-button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: none;
+  box-shadow: none;
+  transition: opacity 0.2s linear;
+  position: absolute;
+  top: 18px;
+  right: 15px;
+}
+
+.element__delete-button:hover {
+  opacity: .6;
+}
+
+.element__delete-button:focus {
+  outline: none;
+}
