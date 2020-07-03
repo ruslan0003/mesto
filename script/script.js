@@ -118,6 +118,25 @@ function deleteElement (evt) {
 //обработчик кнопки удалить
 
 deleteButton.addEventListener('click', deleteElement);
+
+//кнопка лайк
+
+const likeButton = document.querySelector('.element__like-button');
+
+//функция смены цвета сердечка при лайке карточки
+
+function likeIconColorChange (evt) {
+
+  if (evt.target.src.includes('black')) {
+    evt.target.setAttribute('src', '../images/heart-icon.svg');
+  }
+  else evt.target.setAttribute('src', '../images/heart-icon-black.svg');
+}
+
+//обработчик кнопки лайк
+
+likeButton.addEventListener('click', likeIconColorChange);
+
 }
 
 initialElements.forEach(function(item, index) {
@@ -137,5 +156,3 @@ function elAddFormSubmitHandler (evt) {
 
 elAddForm.addEventListener('submit', elAddFormSubmitHandler);
 elAddFormSubmitClose.addEventListener('click', elAddToggle);
-
-
