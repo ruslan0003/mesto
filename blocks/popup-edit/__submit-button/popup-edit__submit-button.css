@@ -1,0 +1,23 @@
+.popup-edit__submit-button {
+  width: 100%;
+  max-width: 358px;
+  min-height: 50px;
+  margin-top: 18px;
+  background-color: #000000;
+  border-radius: 2px;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  font-family: inherit;
+  font-style: inherit;
+  font-weight: normal;
+  color: #fff;
+  box-shadow: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s linear;
+}
+
+.popup-edit__submit-button:hover {
+  background-color: rgba(0, 0, 0, .8);
+}

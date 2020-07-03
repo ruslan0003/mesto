@@ -1,19 +1,19 @@
-const popup = document.querySelector('.pop-up');
+const popup = document.querySelector('.popup-edit');
 const popupOpen = document.querySelector('.profile__edit-button');
-const popupClose = popup.querySelector('.pop-up__close-button');
-const popupSubmitClose = popup.querySelector('.pop-up__submit-button');
+const popupClose = popup.querySelector('.popup-edit__close-button');
+const popupSubmitClose = popup.querySelector('.popup-edit__submit-button');
 
-let formElement = document.querySelector('.pop-up__form');
-let nameInput = formElement.querySelector('.pop-up__form-field_input_name');
-let jobInput = formElement.querySelector('.pop-up__form-field_input_job');
+let formElement = document.querySelector('.popup-edit__form');
+let nameInput = formElement.querySelector('.popup-edit__form-field_input_name');
+let jobInput = formElement.querySelector('.popup-edit__form-field_input_job');
 let nameOutput = document.querySelector('.profile__name');
 let jobOutput = document.querySelector('.profile__position');
 
 
 const popupToggle = function () {
-  popup.classList.toggle('pop-up_opened');
+  popup.classList.toggle('popup-edit_opened');
 
-  if (popup.classList.contains('pop-up_opened')) {
+  if (popup.classList.contains('popup-edit_opened')) {
     nameInput.value = nameOutput.textContent;
     jobInput.value = jobOutput.textContent;
   }
@@ -39,13 +39,13 @@ popupSubmitClose.addEventListener('click', popupToggle);
 
 //открытие и закрытие попапа "Добавить фото"
 
-const elAdd = document.querySelector('.element-add');
+const elAdd = document.querySelector('.popup-add');
 const elAddOpen = document.querySelector('.profile__add-button');
-const elAddClose = elAdd.querySelector('.element-add__close-button');
-const elAddSubmit = elAdd.querySelector('.element-add__submit-button');
+const elAddClose = elAdd.querySelector('.popup-add__close-button');
+const elAddSubmit = elAdd.querySelector('.popup-add__submit-button');
 
 const elAddToggle = function() {
-  elAdd.classList.toggle('element-add_opened');
+  elAdd.classList.toggle('popup-add_opened');
 }
 
 elAddOpen.addEventListener('click', elAddToggle);
@@ -82,10 +82,10 @@ const initialElements = [
 
 //отображение исходного массива фотографий на странице
 
-const elAddForm = document.querySelector('.element-add__form');
-const elAddFormSubmitClose = elAddForm.querySelector('.element-add__submit-button');
-let elTitleInput = elAddForm.querySelector('.element-add__form-field_input_title');
-let elImageInput = elAddForm.querySelector('.element-add__form-field_input_url');
+const elAddForm = document.querySelector('.popup-add__form');
+const elAddFormSubmitClose = elAddForm.querySelector('.popup-add__submit-button');
+let elTitleInput = elAddForm.querySelector('.popup-add__form-field_input_title');
+let elImageInput = elAddForm.querySelector('.popup-add__form-field_input_url');
 
 const elTemplate = document.querySelector('.element-template').content;
 const elList = document.querySelector('.elements');
