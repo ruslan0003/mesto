@@ -96,8 +96,13 @@ function addElements(title, url) {
 const elItem = elTemplate.cloneNode(true);
 
 // наполняем содержимым
-elItem.querySelector('.element__photo').src = url;
-elItem.querySelector('.element__title').textContent = title;
+const itemPhoto = elItem.querySelector('.element__photo');
+
+itemPhoto.src = url;
+
+const itemTitle = elItem.querySelector('.element__title');
+
+itemTitle.textContent = title;
 
 // отображаем на странице
 elList.prepend(elItem);
@@ -137,11 +142,41 @@ function likeIconColorChange (evt) {
 
 likeButton.addEventListener('click', likeIconColorChange);
 
+//открытие фотографии - задаём фото и подпись
+const imagePopup = document.querySelector('.popup-image');
+let photoImagePopup = document.querySelector('.popup-image__photo');
+let titleImagePopup = document.querySelector('.popup-image__title');
+
+//функция попапа с изображением
+
+function openImagePopup() {
+
+photoImagePopup.setAttribute('src', url);
+titleImagePopup.textContent = title;
+
+imagePopup.classList.add('popup-image_opened');
+
+}
+
+//обработчик открытия фото
+
+itemPhoto.addEventListener('click', openImagePopup);
+
+//закрытие попапа с фото
+
+function ClosePopupImage() {
+    imagePopup.classList.remove('popup-image_opened');
+}
+
+const buttonClosePopupImage = document.querySelector('.popup-image__close-icon');
+buttonClosePopupImage.addEventListener('click', ClosePopupImage);
+
 }
 
 initialElements.forEach(function(item, index) {
   addElements(initialElements[index].title, initialElements[index].url);
 });
+
 
 //добавление пользовательских фотографий
 
