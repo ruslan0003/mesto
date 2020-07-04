@@ -9,7 +9,6 @@ let jobInput = formElement.querySelector('.popup-edit__form-field_input_job');
 let nameOutput = document.querySelector('.profile__name');
 let jobOutput = document.querySelector('.profile__position');
 
-
 const popupToggle = function () {
   popup.classList.toggle('popup-edit_opened');
 
