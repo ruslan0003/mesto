@@ -1,4 +1,5 @@
 @import url('./__like-icon/element__like-icon.css');
+@import url('./__like-icon/_active/element__like-icon_active.css');
 @import url('./__title-background/element__title-background.css');
 @import url('./__title/element__title.css');
 @import url('./__photo/element__photo.css');
