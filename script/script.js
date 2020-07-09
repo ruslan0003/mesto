@@ -116,6 +116,7 @@ function openImagePopup(title, url) {
 
   photoImagePopup.src = url;
   titleImagePopup.textContent = title;
+  photoImagePopup.alt = title;
 
   popupOpen(imagePopup);
 
@@ -134,6 +135,7 @@ function addCard(title, url) {
   //наполняем динамическим содержимым
   itemPhoto.src = url;
   itemTitle.textContent = title;
+  itemPhoto.alt = title;
 
   //обработчик кнопки удалить
   const cardDeleteButton = cardItem.querySelector('.element__delete-button');
@@ -163,8 +165,12 @@ function renderCard(title, url) {
 }
 
 //отображаем исходный массив карточек
-initialCards.forEach(function(item, index) {
+/*initialCards.forEach(function(item, index) {
   renderCard(initialCards[index].title, initialCards[index].url);
+});*/
+
+initialCards.forEach((card) => {
+  renderCard(card.title, card.url);
 });
 
 //добавление пользовательских фотографий
