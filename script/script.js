@@ -6,9 +6,9 @@ const popupEdit = document.querySelector('.popup-edit');
 const popupEditOpen = document.querySelector('.profile__edit-button');
 const popupEditClose = popupEdit.querySelector('.popup-edit__close-button');
 const popupEditSubmit = popupEdit.querySelector('.popup-edit__submit-button');
-const formElement = document.querySelector('.popup-edit__form');
-const nameInput = formElement.querySelector('.popup-edit__form-field_input_name');
-const jobInput = formElement.querySelector('.popup-edit__form-field_input_job');
+const profileEditForm = document.querySelector('.popup-edit__form');
+const nameInput = profileEditForm.querySelector('.popup-edit__form-field_input_name');
+const jobInput = profileEditForm.querySelector('.popup-edit__form-field_input_job');
 const nameOutput = document.querySelector('.profile__name');
 const jobOutput = document.querySelector('.profile__position');
 
@@ -173,7 +173,7 @@ initialCards.forEach((card) => {
   renderCard(card.title, card.url);
 });
 
-//добавление пользовательских фотографий
+//функция добавления пользовательских фотографий
 
 function cardAddFormSubmitHandler (evt) {
     evt.preventDefault();
@@ -200,7 +200,7 @@ popupEditSubmit.addEventListener('click', () => {
   popupClose(popupEdit);
 });
 
-formElement.addEventListener('submit', formEditSubmitHandler);
+profileEditForm.addEventListener('submit', formEditSubmitHandler);
 
 //открытие, submit, закрытие окна добавления карточек
 
@@ -217,3 +217,4 @@ cardAddForm.addEventListener('submit', cardAddFormSubmitHandler);
 cardAddClose.addEventListener('click', () => {
   popupClose(cardAdd);
 });
+

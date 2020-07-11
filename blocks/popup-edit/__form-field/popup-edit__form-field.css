@@ -7,7 +7,11 @@
   border-right: none;
   width: 100%;
   max-width: 358px;
-  margin: 0 0 25px 0;
+  margin: 25px 0 0 0;
+}
+
+.popup-edit__form-field:first-child {
+  margin: 0;
 }
 
 .popup-edit__form-field::-webkit-input-placeholder {

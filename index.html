@@ -45,9 +45,11 @@
         <img class="popup-edit__close-icon" src="./images/close-icon.svg" alt="Иконка закрытия модального окна">
       </button>
         <h3 class="popup-edit__title">Редактировать профиль</h3>
-        <form class="popup-edit__form" name="edit-form">
-          <input class="popup-edit__form-field popup-edit__form-field_input_name" type="text" name="name-input">
-          <input class="popup-edit__form-field popup-edit__form-field_input_job" type="text" name="name-job">
+        <form class="popup-edit__form popup-form" name="edit-form" novalidate>
+          <input class="popup-edit__form-field popup-edit__form-field_input_name popup-form__input" id="name-input" type="text" name="name-input" minlength="2" maxlength="40" required>
+          <span class="popup-edit__input-error" id="name-input-error"></span>
+          <input class="popup-edit__form-field popup-edit__form-field_input_job popup-form__input" type="text" name="job-input" id="job-input" minlength="2" maxlength="200" required>
+          <span class="popup-edit__input-error" id="job-input-error"></span>
           <button class="popup-edit__submit-button" type="submit" value="Сохранить">Сохранить</button>
         </form>
     </div>
@@ -59,9 +61,9 @@
         <img class="popup-add__close-icon" src="./images/close-icon.svg" alt="Иконка закрытия модального окна">
       </button>
         <h3 class="popup-add__title">Новое место</h3>
-        <form class="popup-add__form" name="edit-form">
-          <input class="popup-add__form-field popup-add__form-field_input_title" type="text" name="title-input" placeholder="Название">
-          <input class="popup-add__form-field popup-add__form-field_input_url" type="text" name="url-input" placeholder="Ссылка на картинку">
+        <form class="popup-add__form popup-form" name="edit-form">
+          <input class="popup-add__form-field popup-add__form-field_input_title popup-form__input" type="text" name="title-input" placeholder="Название">
+          <input class="popup-add__form-field popup-add__form-field_input_url popup-form__input" type="text" name="url-input" placeholder="Ссылка на картинку">
           <button class="popup-add__submit-button" type="submit" value="Создать">Создать</button>
         </form>
     </div>
@@ -92,5 +94,6 @@
   </template>
 
   <script type="text/javascript" src="script/script.js"></script>
+  <script type="text/javascript" src="script/validate.js"></script>
 </body>
 </html>

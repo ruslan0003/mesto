@@ -1,5 +1,6 @@
 @import url('../vendor/normalize.css');
 @import url('../blocks/popup-edit/popup-edit.css');
+@import url('../blocks/popup-edit/__form-field/_type_error/popup-edit__form-field_type_error.css');
 @import url('../blocks/popup-add/popup-add.css');
 @import url('../blocks/popup-image/popup-image.css');
 @import url('../blocks/element/element.css');
