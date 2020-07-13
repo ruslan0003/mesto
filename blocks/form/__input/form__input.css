@@ -1,4 +1,4 @@
-.popup-edit__form-field {
+.form__input {
   outline: none;
   padding: 5px 0 13px 0;
   border-bottom: 1px solid rgba(0,0,0,.2);
@@ -10,11 +10,11 @@
   margin: 25px 0 0 0;
 }
 
-.popup-edit__form-field:first-child {
+.form__input:first-child {
   margin: 0;
 }
 
-.popup-edit__form-field::-webkit-input-placeholder {
+.form__input::-webkit-input-placeholder {
   font-family: inherit;
   font-style: inherit;
   font-weight: normal;
@@ -23,7 +23,7 @@
   color: #000000;
 }
 
-.popup-edit__form-field::-moz-placeholder {
+.form__input::-moz-placeholder {
   font-family: inherit;
   font-style: inherit;
   font-weight: normal;
@@ -32,7 +32,7 @@
   color: #000000;
 }
 
-.popup-edit__form-field::-ms-input-placeholder {
+.form__input::-ms-input-placeholder {
   font-family: inherit;
   font-style: inherit;
   font-weight: normal;
@@ -41,7 +41,7 @@
   color: #000000;
 }
 
-.popup-edit__form-field::placeholder {
+.form__input::placeholder {
   font-family: inherit;
   font-style: inherit;
   font-weight: normal;
@@ -50,7 +50,7 @@
   color: #000000;
 }
 
-.popup-edit__form-field:focus {
+.form__input:focus {
   outline: 3px solid lightskyblue;
   padding-left: 5px;
 }
