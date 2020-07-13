@@ -1,18 +1,18 @@
 //функция стилизации поля с ошибкой в формах
 
-const showInputError = (form, input, errorMessage) => {
+const showInputError = (form, input, errorMessage, {inputErrorClass, errorClass, ...rest}) => {
   const formErrorMessage = form.querySelector(`#${input.id}-error`);
-  input.classList.add('form__input_type_error');
-  formErrorMessage.classList.add('form__input-error_active');
+  input.classList.add(inputErrorClass);
+  formErrorMessage.classList.add(errorClass);
   formErrorMessage.textContent = errorMessage;
 }
 
 //функция отмены стилизации поля с ошибкой в формах
 
-const hideInputError = (form, input) => {
+const hideInputError = (form, input, {inputErrorClass, errorClass, ...rest}) => {
   const formErrorMessage = form.querySelector(`#${input.id}-error`);
-  input.classList.remove('form__input_type_error');
-  formErrorMessage.classList.remove('form__input-error_active');
+  input.classList.remove(inputErrorClass);
+  formErrorMessage.classList.remove(errorClass);
   formErrorMessage.textContent = '';
 }
 
@@ -26,58 +26,65 @@ const hasInvalidInput = (allInputList) => {
 
 //функция изменения состояния у кнопки submit - активное/неактивное
 
-const toggleButtonState = (allInputList, button) => {
+const toggleButtonState = (allInputList, button, {inactiveButtonClass}) => {
   if (hasInvalidInput(allInputList)) {
-    button.classList.add('form__submit_inactive');
+    button.classList.add(inactiveButtonClass);
     button.disabled = true;
   } else {
-    button.classList.remove('form__submit_inactive');
+    button.classList.remove(inactiveButtonClass);
     button.disabled = false;
   }
 }
 
 //функция проверки валидности полей в формах
 
-function isFormValid (form, input) {
+function isFormValid (form, input, {...rest}) {
   if (!input.validity.valid) {
-    showInputError(form, input, input.validationMessage);
+    showInputError(form, input, input.validationMessage, {...rest});
   }
   else {
-    hideInputError(form, input);
+    hideInputError(form, input, {...rest});
   }
 }
 
 //функция добавления слушателей событий всем полям ввода
 
-const setEventListeners = (form) => {
+function setEventListeners (form, {inputSelector, submitButtonSelector, ...rest}) {
   //cоздаем массив всех инпутов внутри формы
-  const allInputList = Array.from(form.querySelectorAll('.form__input'));
+  const allInputList = Array.from(form.querySelectorAll(inputSelector));
   //находим кнопку submit в форме и вызываем функцию изменения состояния кнопки для её отключения при первоначальном открытии формы
-  const button = form.querySelector('.form__submit');
-  toggleButtonState (allInputList, button);
+  const button = form.querySelector(submitButtonSelector);
+  toggleButtonState (allInputList, button, {...rest});
   //обходим коллекцию инпутов и каждому навешиваем обработчик события input
   allInputList.forEach((input) => {
     input.addEventListener('input', () => {
       //при вводе любого символа вызываем функцию isFormValid, передаём ей форму и поле ввода как аргументы
-      isFormValid(form, input);
+      isFormValid(form, input, {...rest});
       //вызываем функцию изменения состояния кнопки повторно, передаём массив инпутов и кнопку как аргументы
-      toggleButtonState (allInputList, button);
+      toggleButtonState (allInputList, button, {...rest});
     });
   });
 }
 
 //функция добавления setEventListeners всем формам через служебный класс form
 
-function enableValidation() {
+function enableValidation({formSelector, ...rest}) {
   //создаем массив всех форм
-  const allFormList = Array.from(document.querySelectorAll('.form'));
+  const allFormList = Array.from(document.querySelectorAll(formSelector));
   //обходим коллекцию форм, для каждой отменяем стандартное поведение submit, затем вызываем setEventListener с формой как аргументом
   allFormList.forEach((form) => {
     form.addEventListener('submit', (evt) => {
       evt.preventDefault();
     });
-    setEventListeners(form);
+    setEventListeners(form, {...rest});
   });
 }
 
-enableValidation();
+enableValidation({
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__submit',
+  inactiveButtonClass: 'form__submit_inactive',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__input-error_active'
+});

@@ -36,12 +36,7 @@ function popupOpen(popupType) {
 }
 
 function popupClose(popupType) {
-  if (popupType === null) {
-    return;
-  }
-  else {
     popupType.classList.remove('popup_opened');
-  }
 }
 
 //функция исходного автозаполнения полей в окне "Редактировать профиль" при его открытии
@@ -207,6 +202,17 @@ function closePopupByOverlayClick (evt) {
   }
 }
 
+//функция навешивания/снятия обработчика нажатия Esc
+
+function escEventListenerToggle () {
+  if (isOpenedNow()) {
+    document.addEventListener('keydown', closePopupByEsc);
+  }
+  else {
+    document.removeEventListener('keydown', closePopupByEsc);
+  }
+}
+
 //ОБРАБОТЧИКИ
 //открытие, submit, закрытие окна редактирования профиля
 
@@ -243,7 +249,7 @@ cardAddClose.addEventListener('click', () => {
 
 //обработчик нажатия кнопки Esc
 
-document.addEventListener('keydown', closePopupByEsc);
+document.addEventListener('keydown', escEventListenerToggle);
 
 //обработчик клика на оверлей
 
