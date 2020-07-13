@@ -2,7 +2,7 @@
 
 const showInputError = (form, input, errorMessage) => {
   const formErrorMessage = form.querySelector(`#${input.id}-error`);
-  input.classList.add('form__form-field_type_error');
+  input.classList.add('form__input_type_error');
   formErrorMessage.classList.add('form__input-error_active');
   formErrorMessage.textContent = errorMessage;
 }
@@ -24,13 +24,15 @@ const hasInvalidInput = (allInputList) => {
   });
 }
 
-//функция изменения класса у кнопки submit - активное/неактивное состояние
+//функция изменения состояния у кнопки submit - активное/неактивное
 
 const toggleButtonState = (allInputList, button) => {
   if (hasInvalidInput(allInputList)) {
     button.classList.add('form__submit_inactive');
+    button.disabled = true;
   } else {
     button.classList.remove('form__submit_inactive');
+    button.disabled = false;
   }
 }
 
@@ -51,7 +53,7 @@ const setEventListeners = (form) => {
   //cоздаем массив всех инпутов внутри формы
   const allInputList = Array.from(form.querySelectorAll('.form__input'));
   //находим кнопку submit в форме и вызываем функцию изменения состояния кнопки для её отключения при первоначальном открытии формы
-    const button = form.querySelector('.form__submit');
+  const button = form.querySelector('.form__submit');
   toggleButtonState (allInputList, button);
   //обходим коллекцию инпутов и каждому навешиваем обработчик события input
   allInputList.forEach((input) => {

@@ -46,9 +46,9 @@
       </button>
         <h3 class="popup-edit__title">Редактировать профиль</h3>
         <form class="popup-edit__form form" name="edit-form" novalidate>
-          <input class="popup-edit__form-field popup-edit__form-field_input_name form__input" id="name-input" type="text" name="name-input" minlength="2" maxlength="40" required>
+          <input class="form__input form__input_type_name" id="name-input" type="text" name="name-input" placeholder="Имя" minlength="2" maxlength="40" required>
           <span class="form__input-error" id="name-input-error"></span>
-          <input class="popup-edit__form-field popup-edit__form-field_input_job form__input" type="text" name="job-input" id="job-input" minlength="2" maxlength="200" required>
+          <input class="form__input form__input_type_job" type="text" name="job-input" id="job-input" placeholder="О себе" minlength="2" maxlength="200" required>
           <span class="form__input-error" id="job-input-error"></span>
           <button class="form__submit popup-edit__submit-button" type="submit" value="Сохранить">Сохранить</button>
         </form>
@@ -61,9 +61,11 @@
         <img class="popup-add__close-icon" src="./images/close-icon.svg" alt="Иконка закрытия модального окна">
       </button>
         <h3 class="popup-add__title">Новое место</h3>
-        <form class="popup-add__form form" name="edit-form">
-          <input class="popup-add__form-field popup-add__form-field_input_title form__input" type="text" name="title-input" placeholder="Название">
-          <input class="popup-add__form-field popup-add__form-field_input_url form__input" type="text" name="url-input" placeholder="Ссылка на картинку">
+        <form class="popup-add__form form" name="edit-form" novalidate>
+          <input class="form__input form__input_type_title" type="text" id="title-input" name="title-input" placeholder="Название" minlength="1" maxlength="30" required>
+          <span class="form__input-error" id="title-input-error"></span>
+          <input class="form__input form__input_type_url" id="url-input" name="url-input" placeholder="Ссылка на картинку" type="url" required>
+          <span class="form__input-error" id="url-input-error"></span>
           <button class="form__submit popup-add__submit-button" type="submit" value="Создать">Создать</button>
         </form>
     </div>

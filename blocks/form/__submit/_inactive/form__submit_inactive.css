@@ -3,3 +3,7 @@
   border: 1px #C4C4C4 solid;
   background: rgba(255, 255, 255, 0);
 }
+
+.form__submit_inactive:hover {
+  background:  rgba(255, 255, 255, 0);
+}
