@@ -70,15 +70,16 @@ function isFormValid (form, input, {...rest}) {
 function setEventListeners (form, {inputSelector, submitButtonSelector, ...rest}) {
   //cоздаем массив всех инпутов внутри формы
   const allInputList = Array.from(form.querySelectorAll(inputSelector));
-  //находим кнопку submit в форме и вызываем функцию изменения состояния кнопки для её отключения при первоначальном открытии формы
-  const button = form.querySelector(submitButtonSelector);
-  toggleButtonState (allInputList, button, {...rest});
+  //находим кнопку submit в форме "Добавить фото" и вызываем функцию изменения состояния кнопки для её отключения при первоначальном открытии формы
+  const buttonAddForm = document.querySelector('.popup-add__submit-button');
+  toggleButtonState (allInputList, buttonAddForm, {...rest});
   //обходим коллекцию инпутов и каждому навешиваем обработчик события input
   allInputList.forEach((input) => {
     input.addEventListener('input', () => {
       //при вводе любого символа вызываем функцию isFormValid, передаём ей форму и поле ввода как аргументы
       isFormValid(form, input, {...rest});
-      //вызываем функцию изменения состояния кнопки повторно, передаём массив инпутов и кнопку как аргументы
+      //находим кнопку submit для всех форм, вызываем функцию изменения состояния при невалидном инпуте и передаём массив инпутов и кнопку как аргументы
+      const button = form.querySelector(submitButtonSelector);
       toggleButtonState (allInputList, button, {...rest});
     });
   });
