@@ -6,5 +6,5 @@
 @import url('./__submit/_inactive/form__submit_inactive.css');
 
 .form {
-
+  position: relative;
 }
