@@ -250,6 +250,9 @@ cardAddOpen.addEventListener('click', () => {
   clearForm(cardAddForm);
   popupOpen(cardAdd);
   removeErrors(cardAddForm, {inputSelector: '.form__input', inputErrorClass: 'form__input_type_error', errorClass: 'form__input-error_active'});
+  //заблокируем активацию кнопки submit после добавления пользовательской карточки
+  cardAddSubmit.disabled = true;
+  cardAddSubmit.classList.add('form__submit_inactive');
 });
 
 cardAddForm.addEventListener('submit', cardAddFormSubmitHandler);
