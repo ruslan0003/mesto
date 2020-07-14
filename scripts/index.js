@@ -230,12 +230,10 @@ popupEditOpen.addEventListener('click', () => {
 
 popupEditClose.addEventListener('click', () => {
   popupClose(popupEdit);
-  clearForm(profileEditForm);
 });
 
 popupEditSubmit.addEventListener('click', () => {
   popupClose(popupEdit);
-  clearForm(profileEditForm);
 });
 
 profileEditForm.addEventListener('submit', formEditSubmitHandler);
