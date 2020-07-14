@@ -17,9 +17,9 @@ const cardAdd = document.querySelector('.popup-add');
 const cardAddOpen = document.querySelector('.profile__add-button');
 const cardAddClose = cardAdd.querySelector('.popup-add__close-button');
 const cardAddSubmit = cardAdd.querySelector('.popup-add__submit-button');
+const cardAddForm = document.querySelector('.popup-add__form');
 
 //отображение исходного массива карточек на странице
-const cardAddForm = document.querySelector('.popup-add__form');
 const cardTitleInput = cardAddForm.querySelector('.form__input_type_title');
 const cardImageInput = cardAddForm.querySelector('.form__input_type_url');
 const cardTemplate = document.querySelector('.element-template').content;
@@ -213,20 +213,37 @@ function escEventListenerToggle () {
   }
 }
 
+//функция очистки полей формы
+
+function clearForm (form) {
+  form.reset();
+}
+
+//функция очистки ошибок
+
+function removeErrors () {
+  //создаем массив активных ошибок
+  const errors = Array.from(document.querySelectorAll('form__input-error_active'));
+  console.log(errors);
+}
+
 //ОБРАБОТЧИКИ
 //открытие, submit, закрытие окна редактирования профиля
 
 popupEditOpen.addEventListener('click', () => {
   popupInsertFormText();
   popupOpen(popupEdit);
+  removeErrors(profileEditForm, {inputSelector: '.form__input', inputErrorClass: 'form__input_type_error', errorClass: 'form__input-error_active'});
 });
 
 popupEditClose.addEventListener('click', () => {
   popupClose(popupEdit);
+  clearForm(profileEditForm);
 });
 
 popupEditSubmit.addEventListener('click', () => {
   popupClose(popupEdit);
+  clearForm(profileEditForm);
 });
 
 profileEditForm.addEventListener('submit', formEditSubmitHandler);
@@ -238,7 +255,9 @@ cardAddSubmit.addEventListener('click', () => {
 });
 
 cardAddOpen.addEventListener('click', () => {
+  clearForm(cardAddForm);
   popupOpen(cardAdd);
+  removeErrors(cardAddForm, {inputSelector: '.form__input', inputErrorClass: 'form__input_type_error', errorClass: 'form__input-error_active'});
 });
 
 cardAddForm.addEventListener('submit', cardAddFormSubmitHandler);

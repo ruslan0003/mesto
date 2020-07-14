@@ -16,6 +16,24 @@ const hideInputError = (form, input, {inputErrorClass, errorClass, ...rest}) => 
   formErrorMessage.textContent = '';
 }
 
+//функция очистки сообщений об ошибке при открытии формы
+
+function removeErrors (form, {inputSelector, inputErrorClass, errorClass}){
+  //создаем массив инпутов внутри формы
+  const allInputList = Array.from(form.querySelectorAll(inputSelector));
+  //делаем обход массива инпутов и у каждого убираем класс с ошибкой
+  allInputList.forEach((inputSelector) => {
+      inputSelector.classList.remove(inputErrorClass);
+  });
+  //создаем массив спанов с ошибками внутри формы
+  const allErrorSpanList = form.querySelectorAll('.form__input-error');
+  //обходим массив с ошибками и убираем класс, отвечающий за их показ
+  allErrorSpanList.forEach((errorText) => {
+    errorText.textContent = '';
+    errorText.classList.remove(errorClass);
+});
+}
+
 //функция проверки полей формы на валидность - возвращает true, если хотя бы одно поле невалидно
 
 const hasInvalidInput = (allInputList) => {
@@ -66,7 +84,7 @@ function setEventListeners (form, {inputSelector, submitButtonSelector, ...rest}
   });
 }
 
-//функция добавления setEventListeners всем формам через служебный класс form
+//функция добавления setEventListeners всем формам через класс form
 
 function enableValidation({formSelector, ...rest}) {
   //создаем массив всех форм
