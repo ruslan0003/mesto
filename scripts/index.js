@@ -219,14 +219,6 @@ function clearForm (form) {
   form.reset();
 }
 
-//функция очистки ошибок
-
-function removeErrors () {
-  //создаем массив активных ошибок
-  const errors = Array.from(document.querySelectorAll('form__input-error_active'));
-  console.log(errors);
-}
-
 //ОБРАБОТЧИКИ
 //открытие, submit, закрытие окна редактирования профиля
 
