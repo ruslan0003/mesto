@@ -1,5 +1,6 @@
+"use strict";
+
 //ПЕРЕМЕННЫЕ - находим в DOM необходимые элементы
-const popupGlobal = document.querySelector('.popup');
 
 //модальное окно "Редактировать профиль"
 const popupEdit = document.querySelector('.popup-edit');
@@ -31,12 +32,14 @@ const imagePopup = document.querySelector('.popup-image');
 //ФУНКЦИИ
 //функции открытия и закрытия любого из попапов
 
-function popupOpen(popupType) {
-  popupType.classList.add('popup_opened');
+function popupOpen(popupElement) {
+  popupElement.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupByEsc);
 }
 
-function popupClose(popupType) {
-    popupType.classList.remove('popup_opened');
+function popupClose(popupElement) {
+    popupElement.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closePopupByEsc);
 }
 
 //функция исходного автозаполнения полей в окне "Редактировать профиль" при его открытии
@@ -101,7 +104,7 @@ function deleteElement (evt) {
 
 function likeIconColorChange (evt) {
 
-  cardLikeIcon = evt.target;
+  const cardLikeIcon = evt.target;
 
   cardLikeIcon.classList.toggle('element__like-icon_active');
 }
@@ -180,36 +183,24 @@ function cardAddFormSubmitHandler (evt) {
 
 //функция возврата открытого в данный момент модального окна
 
-function isOpenedNow () {
+function getOpenedPopup () {
   return document.querySelector('.popup_opened');
 }
 
 //функция закрытия любого попапа нажатием Esc
 
-function closePopupByEsc (evt) {
-  const popupOpened = isOpenedNow();
+function closePopupByEsc(evt) {
   if (evt.key === 'Escape') {
-    popupClose (popupOpened);
+    popupClose (getOpenedPopup());
   }
+  else return;
 }
 
 //функция закрытия модальных окон кликом на оверлей
 
 function closePopupByOverlayClick (evt) {
-  const popupOpened = isOpenedNow();
-  if (evt.target == popupOpened) {
-    popupClose (popupOpened);
-  }
-}
-
-//функция навешивания/снятия обработчика нажатия Esc
-
-function escEventListenerToggle () {
-  if (isOpenedNow()) {
-    document.addEventListener('keydown', closePopupByEsc);
-  }
-  else {
-    document.removeEventListener('keydown', closePopupByEsc);
+  if (evt.target.classList.contains('popup_opened')) {
+    popupClose (getOpenedPopup());
   }
 }
 
@@ -225,7 +216,12 @@ function clearForm (form) {
 popupEditOpen.addEventListener('click', () => {
   popupInsertFormText();
   popupOpen(popupEdit);
-  removeErrors(profileEditForm, {inputSelector: '.form__input', inputErrorClass: 'form__input_type_error', errorClass: 'form__input-error_active'});
+  removeErrors(profileEditForm, {inputSelector, inputErrorClass, errorClass});
+  //активация кнопки submit при автозаполнении очищенных пользователем полей и повторном открытии формы "Редактировать профиль"
+  if (nameInput.value != '' && jobInput.value != '') {
+    popupEditSubmit.disabled = false;
+    popupEditSubmit.classList.remove('form__submit_inactive');
+    }
 });
 
 popupEditClose.addEventListener('click', () => {
@@ -247,7 +243,7 @@ cardAddSubmit.addEventListener('click', () => {
 cardAddOpen.addEventListener('click', () => {
   clearForm(cardAddForm);
   popupOpen(cardAdd);
-  removeErrors(cardAddForm, {inputSelector: '.form__input', inputErrorClass: 'form__input_type_error', errorClass: 'form__input-error_active'});
+  removeErrors(cardAddForm, {inputSelector, inputErrorClass, errorClass});
   //заблокируем активацию кнопки submit после добавления пользовательской карточки
   cardAddSubmit.disabled = true;
   cardAddSubmit.classList.add('form__submit_inactive');
@@ -258,10 +254,6 @@ cardAddForm.addEventListener('submit', cardAddFormSubmitHandler);
 cardAddClose.addEventListener('click', () => {
   popupClose(cardAdd);
 });
-
-//обработчик нажатия кнопки Esc
-
-document.addEventListener('keydown', escEventListenerToggle);
 
 //обработчик клика на оверлей
 

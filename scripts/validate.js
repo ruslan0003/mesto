@@ -1,6 +1,19 @@
+//конфиг валидации в отдельной переменной
+
+const validConfig = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__submit',
+  inactiveButtonClass: 'form__submit_inactive',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__input-error_active'
+}
+
+const {formSelector, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass} = validConfig;
+
 //функция стилизации поля с ошибкой в формах
 
-const showInputError = (form, input, errorMessage, {inputErrorClass, errorClass, ...rest}) => {
+const showInputError = (form, input, errorMessage, {inputErrorClass, errorClass}) => {
   const formErrorMessage = form.querySelector(`#${input.id}-error`);
   input.classList.add(inputErrorClass);
   formErrorMessage.classList.add(errorClass);
@@ -9,7 +22,7 @@ const showInputError = (form, input, errorMessage, {inputErrorClass, errorClass,
 
 //функция отмены стилизации поля с ошибкой в формах
 
-const hideInputError = (form, input, {inputErrorClass, errorClass, ...rest}) => {
+const hideInputError = (form, input, {inputErrorClass, errorClass}) => {
   const formErrorMessage = form.querySelector(`#${input.id}-error`);
   input.classList.remove(inputErrorClass);
   formErrorMessage.classList.remove(errorClass);
@@ -23,15 +36,8 @@ function removeErrors (form, {inputSelector, inputErrorClass, errorClass}){
   const allInputList = Array.from(form.querySelectorAll(inputSelector));
   //делаем обход массива инпутов и у каждого убираем класс с ошибкой
   allInputList.forEach((inputSelector) => {
-      inputSelector.classList.remove(inputErrorClass);
+      hideInputError (form, inputSelector, {inputErrorClass, errorClass});
   });
-  //создаем массив спанов с ошибками внутри формы
-  const allErrorSpanList = form.querySelectorAll('.form__input-error');
-  //обходим массив с ошибками и убираем класс, отвечающий за их показ
-  allErrorSpanList.forEach((errorText) => {
-    errorText.textContent = '';
-    errorText.classList.remove(errorClass);
-});
 }
 
 //функция проверки полей формы на валидность - возвращает true, если хотя бы одно поле невалидно
@@ -58,10 +64,10 @@ const toggleButtonState = (allInputList, button, {inactiveButtonClass}) => {
 
 function isFormValid (form, input, {...rest}) {
   if (!input.validity.valid) {
-    showInputError(form, input, input.validationMessage, {...rest});
+    showInputError(form, input, input.validationMessage, rest);
   }
   else {
-    hideInputError(form, input, {...rest});
+    hideInputError(form, input, rest);
   }
 }
 
@@ -99,11 +105,4 @@ function enableValidation({formSelector, ...rest}) {
   });
 }
 
-enableValidation({
-  formSelector: '.form',
-  inputSelector: '.form__input',
-  submitButtonSelector: '.form__submit',
-  inactiveButtonClass: 'form__submit_inactive',
-  inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__input-error_active'
-});
+enableValidation({formSelector, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass});
