@@ -1,6 +1,6 @@
 //конфиг валидации в отдельной переменной
 
-const validConfig = {
+const validationConfig = {
   formSelector: '.form',
   inputSelector: '.form__input',
   submitButtonSelector: '.form__submit',
@@ -8,8 +8,6 @@ const validConfig = {
   inputErrorClass: 'form__input_type_error',
   errorClass: 'form__input-error_active'
 }
-
-const {formSelector, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass} = validConfig;
 
 //функция стилизации поля с ошибкой в формах
 
@@ -86,7 +84,7 @@ function setEventListeners (form, {inputSelector, submitButtonSelector, ...rest}
       isFormValid(form, input, {...rest});
       //находим кнопку submit для всех форм, вызываем функцию изменения состояния при невалидном инпуте и передаём массив инпутов и кнопку как аргументы
       const button = form.querySelector(submitButtonSelector);
-      toggleButtonState (allInputList, button, {...rest});
+      toggleButtonState (allInputList, button, rest);
     });
   });
 }
@@ -101,8 +99,8 @@ function enableValidation({formSelector, ...rest}) {
     form.addEventListener('submit', (evt) => {
       evt.preventDefault();
     });
-    setEventListeners(form, {...rest});
+    setEventListeners(form, rest);
   });
 }
 
-enableValidation({formSelector, inputSelector, submitButtonSelector, inactiveButtonClass, inputErrorClass, errorClass});
+enableValidation(validationConfig);

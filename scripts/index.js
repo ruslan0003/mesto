@@ -162,8 +162,8 @@ return cardItem;
 
 //функция рендеринга карточки на странице
 function renderCard(title, url) {
-  const cardRendered = addCard(title, url);
-  cardsList.prepend(cardRendered);
+  const cardToRender = addCard(title, url);
+  cardsList.prepend(cardToRender);
 }
 
 initialCards.forEach((card) => {
@@ -216,12 +216,9 @@ function clearForm (form) {
 popupEditOpen.addEventListener('click', () => {
   popupInsertFormText();
   popupOpen(popupEdit);
-  removeErrors(profileEditForm, {inputSelector, inputErrorClass, errorClass});
-  //активация кнопки submit при автозаполнении очищенных пользователем полей и повторном открытии формы "Редактировать профиль"
-  if (nameInput.value != '' && jobInput.value != '') {
-    popupEditSubmit.disabled = false;
-    popupEditSubmit.classList.remove('form__submit_inactive');
-    }
+  removeErrors(profileEditForm, validationConfig);
+  popupEditSubmit.disabled = false;
+  popupEditSubmit.classList.remove('form__submit_inactive');
 });
 
 popupEditClose.addEventListener('click', () => {
@@ -243,7 +240,7 @@ cardAddSubmit.addEventListener('click', () => {
 cardAddOpen.addEventListener('click', () => {
   clearForm(cardAddForm);
   popupOpen(cardAdd);
-  removeErrors(cardAddForm, {inputSelector, inputErrorClass, errorClass});
+  removeErrors(cardAddForm, validationConfig);
   //заблокируем активацию кнопки submit после добавления пользовательской карточки
   cardAddSubmit.disabled = true;
   cardAddSubmit.classList.add('form__submit_inactive');
