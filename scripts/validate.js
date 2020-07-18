@@ -29,13 +29,15 @@ const hideInputError = (form, input, {inputErrorClass, errorClass}) => {
 
 //функция очистки сообщений об ошибке при открытии формы
 
-function removeErrors (form, {inputSelector, inputErrorClass, errorClass}){
+function removeErrors (form, {inputSelector, inputErrorClass, errorClass, inactiveButtonClass, submitButtonSelector}){
   //создаем массив инпутов внутри формы
   const allInputList = Array.from(form.querySelectorAll(inputSelector));
   //делаем обход массива инпутов и у каждого убираем класс с ошибкой
-  allInputList.forEach((inputSelector) => {
-      hideInputError (form, inputSelector, {inputErrorClass, errorClass});
+  allInputList.forEach((inputElement) => {
+      hideInputError (form, inputElement, {inputErrorClass, errorClass});
   });
+  const button = form.querySelector(submitButtonSelector);
+  toggleButtonState(allInputList, button, {inactiveButtonClass});
 }
 
 //функция проверки полей формы на валидность - возвращает true, если хотя бы одно поле невалидно
@@ -76,7 +78,7 @@ function setEventListeners (form, {inputSelector, submitButtonSelector, ...rest}
   const allInputList = Array.from(form.querySelectorAll(inputSelector));
   //находим кнопку submit в форме "Добавить фото" и вызываем функцию изменения состояния кнопки для её отключения при первоначальном открытии формы
   const buttonAddForm = document.querySelector('.popup-add__submit-button');
-  toggleButtonState (allInputList, buttonAddForm, {...rest});
+  toggleButtonState (allInputList, buttonAddForm, rest);
   //обходим коллекцию инпутов и каждому навешиваем обработчик события input
   allInputList.forEach((input) => {
     input.addEventListener('input', () => {

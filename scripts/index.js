@@ -217,8 +217,6 @@ popupEditOpen.addEventListener('click', () => {
   popupInsertFormText();
   popupOpen(popupEdit);
   removeErrors(profileEditForm, validationConfig);
-  popupEditSubmit.disabled = false;
-  popupEditSubmit.classList.remove('form__submit_inactive');
 });
 
 popupEditClose.addEventListener('click', () => {
@@ -241,9 +239,6 @@ cardAddOpen.addEventListener('click', () => {
   clearForm(cardAddForm);
   popupOpen(cardAdd);
   removeErrors(cardAddForm, validationConfig);
-  //заблокируем активацию кнопки submit после добавления пользовательской карточки
-  cardAddSubmit.disabled = true;
-  cardAddSubmit.classList.add('form__submit_inactive');
 });
 
 cardAddForm.addEventListener('submit', cardAddFormSubmitHandler);
