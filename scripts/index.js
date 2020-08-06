@@ -65,11 +65,11 @@ export const validationConfig = {
   errorClass: 'form__input-error_active'
 }
 
-const form1 = new FormValidator(validationConfig, profileEditForm);
-form1.enableValidation();
+const profileForm = new FormValidator(validationConfig, profileEditForm);
+profileForm.enableValidation();
 
-const form2 = new FormValidator(validationConfig, cardAddForm);
-form2.enableValidation();
+const cardForm = new FormValidator(validationConfig, cardAddForm);
+cardForm.enableValidation();
 
 
 // ОБРАБОТЧИКИ
@@ -78,8 +78,8 @@ form2.enableValidation();
 popupEditOpen.addEventListener('click', () => {
   popupInsertFormText();
   popupOpen(popupEdit);
-  const form1 = new FormValidator(validationConfig, profileEditForm);
-  form1.removeErrors(profileEditForm, validationConfig);
+  const profileForm = new FormValidator(validationConfig, profileEditForm);
+  profileForm.removeErrors(profileEditForm, validationConfig);
   });
 
 popupEditClose.addEventListener('click', () => {
@@ -101,8 +101,8 @@ cardAddSubmit.addEventListener('click', () => {
 cardAddOpen.addEventListener('click', () => {
   clearForm(cardAddForm);
   popupOpen(cardAdd);
-  const form2 = new FormValidator(validationConfig, cardAddForm);
-  form2.removeErrors(cardAddForm, validationConfig);
+  const cardForm = new FormValidator(validationConfig, cardAddForm);
+  cardForm.removeErrors(cardAddForm, validationConfig);
   });
 
 cardAddForm.addEventListener('submit', cardAddFormSubmitHandler);
