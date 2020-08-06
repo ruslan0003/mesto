@@ -52,7 +52,6 @@ function formEditSubmitHandler (evt) {
 
   }
 
-
 //функция добавления пользовательских фотографий
 
 function cardAddFormSubmitHandler (evt) {

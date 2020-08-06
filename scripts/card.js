@@ -1,9 +1,9 @@
-import {popupOpen, popupClose, getOpenedPopup} from './utils.js';
+import {popupOpen, popupClose} from './utils.js';
 
 export class Card {
-  constructor (data, cardSelector) {
-    this._title = data.title;
-    this._url = data.url;
+  constructor (title, url, cardSelector) {
+    this._title = title;
+    this._url = url;
     this._cardSelector = cardSelector;
   }
 
@@ -38,7 +38,7 @@ export class Card {
     this._element.remove();
   }
 
-  _handleLikeClick(evt) {
+  _handleLikeClick() {
     this._element.querySelector('.element__like-icon').classList.toggle('element__like-icon_active');
   }
 

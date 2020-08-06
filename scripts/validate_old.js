@@ -1,7 +1,6 @@
 //конфиг валидации в отдельной переменной
 
 const validationConfig = {
-  formSelector: '.form',
   inputSelector: '.form__input',
   submitButtonSelector: '.form__submit',
   inactiveButtonClass: 'form__submit_inactive',
