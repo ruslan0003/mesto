@@ -1,14 +1,13 @@
-import {nameInput, jobInput, nameOutput, jobOutput, cardImageInput, cardTitleInput} from './index.js';
 import {Card} from './card.js';
 
 //функции открытия и закрытия попапов
 
-function popupOpen(popupElement) {
+function openPopup(popupElement) {
   popupElement.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupByEsc);
 }
 
-function popupClose(popupElement) {
+function closePopup(popupElement) {
     popupElement.classList.remove('popup_opened');
     document.removeEventListener('keydown', closePopupByEsc);
 }
@@ -23,7 +22,7 @@ function getOpenedPopup () {
 
 function closePopupByEsc(evt) {
   if (evt.key === 'Escape') {
-    popupClose (getOpenedPopup());
+    closePopup (getOpenedPopup());
   }
   else return;
 }
@@ -32,7 +31,7 @@ function closePopupByEsc(evt) {
 
 function closePopupByOverlayClick (evt) {
   if (evt.target.classList.contains('popup_opened')) {
-    popupClose (getOpenedPopup());
+    closePopup (getOpenedPopup());
   }
 }
 
@@ -56,14 +55,14 @@ function hideInputError (form, input, inputErrorClass, errorClass) {
 
 //функция исходного автозаполнения полей в окне "Редактировать профиль" при его открытии
 
-function popupInsertFormText() {
+function insertPopupFormText(nameInput, jobInput, nameOutput, jobOutput) {
   nameInput.value = nameOutput.textContent;
   jobInput.value = jobOutput.textContent;
 }
 
 //функция вставки введенных пользователем значений в окне "Редактировать профиль"
 
-function formEditSubmitHandler (evt) {
+const formEditSubmitHandler = (evt, nameInput, jobInput, nameOutput, jobOutput) => {
   evt.preventDefault();
 
   const nameInputValue = nameInput.value;
@@ -71,18 +70,16 @@ function formEditSubmitHandler (evt) {
 
   nameOutput.textContent = nameInputValue;
   jobOutput.textContent = jobInputValue;
-
 }
 
 //функция добавления пользовательских фотографий
 
-function cardAddFormSubmitHandler (evt) {
+const addCardFormSubmitHandler = (evt, cardTitle, cardImage) => {
   evt.preventDefault();
 
-    const card = new Card (cardTitleInput.value, cardImageInput.value, '.element-template');
-    const cardElement = card.generateCard();
-    document.querySelector('.elements').prepend(cardElement);
-
+  const card = new Card (cardTitle.value, cardImage.value, '.element-template');
+  const cardElement = card.generateCard();
+  document.querySelector('.elements').prepend(cardElement);
 }
 
 //функция очистки полей формы
@@ -91,4 +88,4 @@ function clearForm (form) {
 form.reset();
 }
 
-export {popupClose, popupOpen, closePopupByOverlayClick, getOpenedPopup, showInputError, hideInputError, formEditSubmitHandler, popupInsertFormText, clearForm, cardAddFormSubmitHandler}
+export {closePopup, openPopup, closePopupByOverlayClick, getOpenedPopup, showInputError, hideInputError, formEditSubmitHandler, insertPopupFormText, clearForm, addCardFormSubmitHandler}

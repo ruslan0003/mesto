@@ -1,4 +1,4 @@
-import {popupOpen, popupClose} from './utils.js';
+import {openPopup, closePopup} from './utils.js';
 
 export class Card {
   constructor (title, url, cardSelector) {
@@ -43,14 +43,15 @@ export class Card {
   }
 
   _handleImageClick(title, url) {
-    document.querySelector('.popup-image__photo').src = url;
-    document.querySelector('.popup-image__photo').alt = title;
+    const _popupPhotoItem = document.querySelector('.popup-image__photo');
+    _popupPhotoItem.src = url;
+    _popupPhotoItem.alt = title;
     document.querySelector('.popup-image__title').textContent = title;
-    popupOpen(document.querySelector('.popup-image'));
+    openPopup(document.querySelector('.popup-image'));
   }
 
   _handleCloseClick() {
-    popupClose(document.querySelector('.popup-image'));
+    closePopup(document.querySelector('.popup-image'));
   }
 
   generateCard() {
