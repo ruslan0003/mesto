@@ -43,15 +43,18 @@ export class Card {
   }
 
   _handleImageClick(title, url) {
-    const _popupPhotoItem = document.querySelector('.popup-image__photo');
-    _popupPhotoItem.src = url;
-    _popupPhotoItem.alt = title;
-    document.querySelector('.popup-image__title').textContent = title;
-    openPopup(document.querySelector('.popup-image'));
+    const popupPhotoItem = document.querySelector('.popup-image__photo');
+    const popupPhotoTitle = document.querySelector('.popup-image__title');
+    const popupPhotoSection = document.querySelector('.popup-image');
+    popupPhotoItem.src = url;
+    popupPhotoItem.alt = title;
+    popupPhotoTitle.textContent = title;
+    openPopup(popupPhotoSection);
   }
 
   _handleCloseClick() {
-    closePopup(document.querySelector('.popup-image'));
+    const popupPhotoSection = document.querySelector('.popup-image');
+    closePopup(popupPhotoSection);
   }
 
   generateCard() {
@@ -61,5 +64,4 @@ export class Card {
     this._setEventListeners();
     return this._element;
   }
-
 }

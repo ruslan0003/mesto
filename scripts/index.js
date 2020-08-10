@@ -2,7 +2,7 @@
 
 import {Card} from './card.js';
 import {FormValidator} from './formValidator.js';
-import {openPopup, closePopup, closePopupByOverlayClick, formEditSubmitHandler, addCardFormSubmitHandler, insertPopupFormText, clearForm} from './utils.js';
+import {openPopup, closePopup, closePopupByOverlayClick, formEditSubmitHandler, insertPopupEditFormText, clearForm} from './utils.js';
 import {initialCards} from './initial-cards.js';
 import {validationConfig} from './config.js';
 
@@ -24,11 +24,12 @@ const cardAddSubmit = cardAdd.querySelector('.popup-add__submit-button');
 const cardAddForm = document.querySelector('.popup-add__form');
 const cardTitleInput = cardAddForm.querySelector('.form__input_type_title');
 const cardImageInput = cardAddForm.querySelector('.form__input_type_url');
+const cardsList = document.querySelector('.elements');
 
 initialCards.forEach((item) => {
   const card = new Card (item.title, item.url, '.element-template');
   const cardElement = card.generateCard();
-  document.querySelector('.elements').append(cardElement);
+  cardsList.append(cardElement);
 });
 
 const profileForm = new FormValidator(validationConfig, profileEditForm);
@@ -37,11 +38,20 @@ profileForm.enableValidation();
 const cardForm = new FormValidator(validationConfig, cardAddForm);
 cardForm.enableValidation();
 
+//функция добавления пользовательских фотографий
+
+const addCardFormSubmitHandler = (evt, cardTitle, cardImage) => {
+  evt.preventDefault();
+  const card = new Card (cardTitle.value, cardImage.value, '.element-template');
+  const cardElement = card.generateCard();
+  cardsList.prepend(cardElement);
+}
+
 // ОБРАБОТЧИКИ
 // открытие, submit, закрытие окна редактирования профиля
 
 popupEditOpen.addEventListener('click', () => {
-  insertPopupFormText(nameInput, jobInput, nameOutput, jobOutput);
+  insertPopupEditFormText(nameInput, jobInput, nameOutput, jobOutput);
   openPopup(popupEdit);
   const profileForm = new FormValidator(validationConfig, profileEditForm);
   profileForm.removeErrors(profileEditForm, validationConfig);

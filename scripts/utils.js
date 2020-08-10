@@ -1,5 +1,3 @@
-import {Card} from './card.js';
-
 //функции открытия и закрытия попапов
 
 function openPopup(popupElement) {
@@ -14,7 +12,7 @@ function closePopup(popupElement) {
 
 //функция возврата открытого в данный момент модального окна
 
-function getOpenedPopup () {
+function getOpenedPopup() {
   return document.querySelector('.popup_opened');
 }
 
@@ -22,22 +20,22 @@ function getOpenedPopup () {
 
 function closePopupByEsc(evt) {
   if (evt.key === 'Escape') {
-    closePopup (getOpenedPopup());
+    closePopup(getOpenedPopup());
   }
   else return;
 }
 
 //функция закрытия модальных окон кликом на оверлей
 
-function closePopupByOverlayClick (evt) {
+function closePopupByOverlayClick(evt) {
   if (evt.target.classList.contains('popup_opened')) {
-    closePopup (getOpenedPopup());
+    closePopup(getOpenedPopup());
   }
 }
 
 //функция стилизации поля с ошибкой в формах
 
-function showInputError (form, input, errorMessage, inputErrorClass, errorClass) {
+function showInputError(form, input, errorMessage, inputErrorClass, errorClass) {
   const formErrorMessage = form.querySelector(`#${input.id}-error`);
   input.classList.add(inputErrorClass);
   formErrorMessage.classList.add(errorClass);
@@ -46,7 +44,7 @@ function showInputError (form, input, errorMessage, inputErrorClass, errorClass)
 
 //функция отмены стилизации поля с ошибкой в формах
 
-function hideInputError (form, input, inputErrorClass, errorClass) {
+function hideInputError(form, input, inputErrorClass, errorClass) {
   const formErrorMessage = form.querySelector(`#${input.id}-error`);
   input.classList.remove(inputErrorClass);
   formErrorMessage.classList.remove(errorClass);
@@ -55,7 +53,7 @@ function hideInputError (form, input, inputErrorClass, errorClass) {
 
 //функция исходного автозаполнения полей в окне "Редактировать профиль" при его открытии
 
-function insertPopupFormText(nameInput, jobInput, nameOutput, jobOutput) {
+function insertPopupEditFormText(nameInput, jobInput, nameOutput, jobOutput) {
   nameInput.value = nameOutput.textContent;
   jobInput.value = jobOutput.textContent;
 }
@@ -64,28 +62,14 @@ function insertPopupFormText(nameInput, jobInput, nameOutput, jobOutput) {
 
 const formEditSubmitHandler = (evt, nameInput, jobInput, nameOutput, jobOutput) => {
   evt.preventDefault();
-
-  const nameInputValue = nameInput.value;
-  const jobInputValue = jobInput.value;
-
-  nameOutput.textContent = nameInputValue;
-  jobOutput.textContent = jobInputValue;
-}
-
-//функция добавления пользовательских фотографий
-
-const addCardFormSubmitHandler = (evt, cardTitle, cardImage) => {
-  evt.preventDefault();
-
-  const card = new Card (cardTitle.value, cardImage.value, '.element-template');
-  const cardElement = card.generateCard();
-  document.querySelector('.elements').prepend(cardElement);
+  nameOutput.textContent = nameInput.value;
+  jobOutput.textContent = jobInput.value;
 }
 
 //функция очистки полей формы
 
-function clearForm (form) {
-form.reset();
+function clearForm(form) {
+  form.reset();
 }
 
-export {closePopup, openPopup, closePopupByOverlayClick, getOpenedPopup, showInputError, hideInputError, formEditSubmitHandler, insertPopupFormText, clearForm, addCardFormSubmitHandler}
+export {closePopup, openPopup, closePopupByOverlayClick, getOpenedPopup, showInputError, hideInputError, formEditSubmitHandler, insertPopupEditFormText, clearForm}
