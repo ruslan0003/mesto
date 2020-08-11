@@ -53,7 +53,6 @@ const addCardFormSubmitHandler = (evt, cardTitle, cardImage) => {
 popupEditOpen.addEventListener('click', () => {
   insertPopupEditFormText(nameInput, jobInput, nameOutput, jobOutput);
   openPopup(popupEdit);
-  const profileFormValidator = new FormValidator(validationConfig, profileEditForm);
   profileFormValidator.removeErrors(profileEditForm, validationConfig);
 });
 
@@ -76,7 +75,6 @@ cardAddSubmit.addEventListener('click', () => {
 cardAddOpen.addEventListener('click', () => {
   clearForm(cardAddForm);
   openPopup(cardAdd);
-  const cardFormValidator = new FormValidator(validationConfig, cardAddForm);
   cardFormValidator.removeErrors(cardAddForm, validationConfig);
 });
 
