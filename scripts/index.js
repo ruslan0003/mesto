@@ -32,11 +32,11 @@ initialCards.forEach((item) => {
   cardsList.append(cardElement);
 });
 
-const profileForm = new FormValidator(validationConfig, profileEditForm);
-profileForm.enableValidation();
+const profileFormValidator = new FormValidator(validationConfig, profileEditForm);
+profileFormValidator.enableValidation();
 
-const cardForm = new FormValidator(validationConfig, cardAddForm);
-cardForm.enableValidation();
+const cardFormValidator = new FormValidator(validationConfig, cardAddForm);
+cardFormValidator.enableValidation();
 
 //функция добавления пользовательских фотографий
 
@@ -53,8 +53,8 @@ const addCardFormSubmitHandler = (evt, cardTitle, cardImage) => {
 popupEditOpen.addEventListener('click', () => {
   insertPopupEditFormText(nameInput, jobInput, nameOutput, jobOutput);
   openPopup(popupEdit);
-  const profileForm = new FormValidator(validationConfig, profileEditForm);
-  profileForm.removeErrors(profileEditForm, validationConfig);
+  const profileFormValidator = new FormValidator(validationConfig, profileEditForm);
+  profileFormValidator.removeErrors(profileEditForm, validationConfig);
 });
 
 popupEditClose.addEventListener('click', () => {
@@ -76,8 +76,8 @@ cardAddSubmit.addEventListener('click', () => {
 cardAddOpen.addEventListener('click', () => {
   clearForm(cardAddForm);
   openPopup(cardAdd);
-  const cardForm = new FormValidator(validationConfig, cardAddForm);
-  cardForm.removeErrors(cardAddForm, validationConfig);
+  const cardFormValidator = new FormValidator(validationConfig, cardAddForm);
+  cardFormValidator.removeErrors(cardAddForm, validationConfig);
 });
 
 cardAddForm.addEventListener('submit', (evt) => addCardFormSubmitHandler(evt, cardTitleInput, cardImageInput));

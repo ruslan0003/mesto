@@ -15,29 +15,29 @@ export class FormValidator {
   _hasInvalidInput(allInputList) {
     return allInputList.some((input) => {
       return !input.validity.valid;
-  });
-}
+    });
+  }
 
 // приватный метод проверки валидности формы
 
   _isFormValid (form, input) {
-  if (!input.validity.valid) {
+    if (!input.validity.valid) {
     showInputError(form, input, input.validationMessage, this._inputErrorClass, this._errorClass);
-  }
-  else {
+    }
+    else {
     hideInputError(form, input, this._inputErrorClass, this._errorClass);
+    }
   }
-}
 
   // изменение состояния кнопки сабмита
 
   _toggleButtonState (allInputList, button, inactiveButtonClass) {
-  if (this._hasInvalidInput (allInputList)) {
-    button.classList.add(inactiveButtonClass);
-    button.disabled = true;
+    if (this._hasInvalidInput (allInputList)) {
+      button.classList.add(inactiveButtonClass);
+      button.disabled = true;
     } else {
-    button.classList.remove(inactiveButtonClass);
-    button.disabled = false;
+      button.classList.remove(inactiveButtonClass);
+      button.disabled = false;
     }
   }
 
