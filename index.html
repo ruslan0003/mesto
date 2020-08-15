@@ -42,7 +42,7 @@
   <section class="popup popup-edit">
     <div class="popup-edit__container">
       <button class="popup-edit__close-button">
-        <img class="popup-edit__close-icon" src="./images/close-icon.svg" alt="Иконка закрытия модального окна">
+        <img class="popup-edit__close-icon close-icon" src="./images/close-icon.svg" alt="Иконка закрытия модального окна">
       </button>
         <h3 class="popup-edit__title">Редактировать профиль</h3>
         <form class="popup-edit__form form" name="edit-form" novalidate>
@@ -58,7 +58,7 @@
   <section class="popup popup-add">
     <div class="popup-add__container">
       <button class="popup-add__close-button">
-        <img class="popup-add__close-icon" src="./images/close-icon.svg" alt="Иконка закрытия модального окна">
+        <img class="popup-add__close-icon close-icon" src="./images/close-icon.svg" alt="Иконка закрытия модального окна">
       </button>
         <h3 class="popup-add__title">Новое место</h3>
         <form class="popup-add__form form" name="edit-form" novalidate>
@@ -75,7 +75,7 @@
     <figure class="popup-image__container">
       <img class="popup-image__photo" src="#">
       <button class="popup-image__close-button">
-        <img class="popup-image__close-icon" src="./images/close-icon.svg" alt="Иконка закрытия модального окна">
+        <img class="popup-image__close-icon close-icon" src="./images/close-icon.svg" alt="Иконка закрытия модального окна">
       </button>
         <figcaption class="popup-image__title"></figcaption>
     </figure>
@@ -96,11 +96,14 @@
     </li>
   </template>
 
-  <script type="module" src="scripts/index.js"></script>
-  <script type="module" src="scripts/card.js"></script>
-  <script type="module" src="scripts/utils.js"></script>
-  <script type="module" src="scripts/formValidator.js"></script>
-  <script type="module" src="scripts/initial-cards.js"></script>
-  <script type="module" src="scripts/config.js"></script>
+  <script type="module" src="scripts/pages/index.js"></script>
+  <script type="module" src="scripts/components/card.js"></script>
+  <script type="module" src="scripts/utils/utils.js"></script>
+  <script type="module" src="scripts/components/formValidator.js"></script>
+  <script type="module" src="scripts/components/section.js"></script>
+  <script type="module" src="scripts/components/popup.js"></script>
+  <script type="module" src="scripts/utils/initial-cards.js"></script>
+  <script type="module" src="scripts/utils/config.js"></script>
+  <script type="module" src="scripts/utils/constants.js"></script>
 </body>
 </html>

@@ -1,0 +1,17 @@
+export const popupEdit = document.querySelector('.popup-edit');
+export const popupEditOpen = document.querySelector('.profile__edit-button');
+export const popupEditClose = popupEdit.querySelector('.popup-edit__close-button');
+export const popupEditSubmit = popupEdit.querySelector('.popup-edit__submit-button');
+export const profileEditForm = document.querySelector('.popup-edit__form');
+export const nameInput = profileEditForm.querySelector('.form__input_type_name');
+export const jobInput = profileEditForm.querySelector('.form__input_type_job');
+export const nameOutput = document.querySelector('.profile__name');
+export const jobOutput = document.querySelector('.profile__position');
+export const cardAdd = document.querySelector('.popup-add');
+export const cardAddOpen = document.querySelector('.profile__add-button');
+export const cardAddClose = cardAdd.querySelector('.popup-add__close-button');
+export const cardAddSubmit = cardAdd.querySelector('.popup-add__submit-button');
+export const cardAddForm = document.querySelector('.popup-add__form');
+export const cardTitleInput = cardAddForm.querySelector('.form__input_type_title');
+export const cardImageInput = cardAddForm.querySelector('.form__input_type_url');
+export const cardsListSection = '.elements';

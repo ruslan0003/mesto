@@ -1,4 +1,4 @@
-import {hideInputError, showInputError} from './utils.js';
+import {hideInputError, showInputError} from '../utils/utils.js';
 
 export class FormValidator {
   constructor ({inputSelector, inputErrorClass, errorClass, inactiveButtonClass, submitButtonSelector}, form) {
