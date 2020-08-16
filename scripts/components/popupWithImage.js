@@ -12,16 +12,9 @@ export class PopupWithImage extends Popup {
     popupPhotoTitle.alt = title;
     popupPhotoTitle.textContent = title;
     this._popupSelector.classList.add('popup_opened');
-    document.addEventListener('keydown', (evt) => _handleEscClose(evt));
-  }
-
-  close() {
-    super.close();
+    document.addEventListener('keydown', (evt) => this._handleEscClose(evt));
   }
 
 }
-
-
-//в качестве handleCardClick, который должен оказаться в конструкторе Card, передаём метод open класса PopupWithImage.
 
 

@@ -4,16 +4,16 @@ import {Card} from '../components/card.js';
 import {Section} from '../components/section.js';
 import {PopupWithImage} from '../components/popupWithImage.js';
 import {FormValidator} from '../components/formValidator.js';
-import {formEditSubmitHandler, insertPopupEditFormText, clearForm} from '../utils/utils.js';
+import {UserInfo} from '../components/userInfo.js';
 import {initialCards} from '../utils/initial-cards.js';
 import {validationConfig} from '../utils/config.js';
 import {popupEditProfile, popupEditOpen, popupEditClose, popupEditSubmit, profileEditForm, nameInput, jobInput, nameOutput, jobOutput, popupAddCard, cardAddOpen, cardAddClose, cardAddSubmit, cardAddForm, cardTitleInput, cardImageInput, cardsListSection, popupImageSection} from '../utils/constants.js';
 import { PopupWithForm } from '../components/popupWithForm.js';
 
-const cardsList = new Section ({
+const cardsList = new Section({
   items: initialCards,
   renderer: (item) => {
-    const card = new Card ({
+    const card = new Card({
       title: item.title,
       url: item.url,
       cardSelector: '.element-template',
@@ -26,20 +26,34 @@ const cardsList = new Section ({
 cardsListSection);
 cardsList.renderItems();
 
-const popupWithImage = new PopupWithImage(popupImageSection);
+const popupWithImageClass = new PopupWithImage(popupImageSection);
 
 function handleCardClick(title, url) {
-  popupWithImage.open(title, url);
+  popupWithImageClass.open(title, url);
 }
 
-const profileEditForm = new PopupWithForm();
+const editProfileFormClass = new PopupWithForm({
+  popupSelector: popupEditProfile,
+  submit: () => editProfileFormSubmitHandler()
+});
 
+const addCardFormClass = new PopupWithForm({
+  popupSelector: popupAddCard,
+  submit: () => addCardFormSubmitHandler(evt, cardTitle, cardImage)
+});
+
+editProfileFormClass.setEventListeners();
+addCardFormClass.setEventListeners();
+popupWithImageClass.setEventListeners();
 
 const profileFormValidator = new FormValidator(validationConfig, profileEditForm);
 profileFormValidator.enableValidation();
 
 const cardFormValidator = new FormValidator(validationConfig, cardAddForm);
 cardFormValidator.enableValidation();
+
+const userInfo = new UserInfo({name: nameInput, job: jobInput});
+
 
 //функция добавления пользовательских фотографий
 
@@ -56,9 +70,19 @@ const addCardFormSubmitHandler = (evt, cardTitle, cardImage) => {
   cardsListSelector.prepend(cardElement);
 }
 
+const editProfileFormSubmitHandler = (evt, nameInput, jobInput, nameOutput, jobOutput) => {
+  evt.preventDefault();
+  nameOutput.textContent = nameInput.value;
+  jobOutput.textContent = jobInput.value;
+}
+
+
+
+
+
 // ОБРАБОТЧИКИ
 // открытие, submit, закрытие окна редактирования профиля
-
+/*
 popupEditOpen.addEventListener('click', () => {
   insertPopupEditFormText(nameInput, jobInput, nameOutput, jobOutput);
   openPopup(popupEditProfile);
@@ -97,4 +121,4 @@ cardAddClose.addEventListener('click', () => {
 
   // обработчик клика на оверлей
 
-//window.addEventListener('click', closePopupByOverlayClick);
+//window.addEventListener('click', closePopupByOverlayClick);*/

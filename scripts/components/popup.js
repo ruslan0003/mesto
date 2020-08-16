@@ -5,36 +5,35 @@ export class Popup {
 
   open() {
     this._popupSelector.classList.add('popup_opened');
-    document.addEventListener('keydown', (evt) => _handleEscClose(evt));
+    document.addEventListener('keydown', (evt) => this._handleEscClose(evt));
   }
 
   close() {
     this._popupSelector.classList.remove('popup_opened');
-    document.removeEventListener('keydown', (evt) => _handleEscClose(evt));
+    document.removeEventListener('keydown', (evt) => this._handleEscClose(evt));
   }
 
   _handleEscClose(evt) {
     if (evt.key === 'Escape') {
-      this._popupSelector.close();
+      this.close();
     }
     else return;
   }
 
   _closePopupByOverlayClick(evt) {
     if (evt.target.classList.contains('popup_opened')) {
-      this._popupSelector.close();
+      this.close();
     }
   }
 
   setEventListeners() {
-    this._popupSelector.querySelector('.close-icon').addEventListener('click', () => {
-      this._popupSelector.close();
+    const closeIcon = this._popupSelector.querySelector('.close-icon');
+    closeIcon.addEventListener('click', () => {
+      this.close();
+    });
+    window.addEventListener('click', (evt) => {
+      this._closePopupByOverlayClick(evt);
     });
   }
-}
 
-/*Создайте класс Popup, который отвечает за открытие и закрытие попапа. Этот класс:
-Принимает в конструктор единственный параметр — селектор попапа.
-Содержит публичные методы open и close, которые отвечают за открытие и закрытие попапа.
-Содержит приватный метод _handleEscClose, который содержит логику закрытия попапа клавишей Esc.
-Содержит публичный метод setEventListeners, который добавляет слушатель клика иконке закрытия попапа. */
+}
