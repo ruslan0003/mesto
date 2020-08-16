@@ -1,10 +1,9 @@
-import {openPopup, closePopup} from '../utils/utils.js';
-
 export class Card {
-  constructor (title, url, cardSelector) {
+  constructor ({title, url, cardSelector, click}) {
     this._title = title;
     this._url = url;
     this._cardSelector = cardSelector;
+    this._handleCardClick = click;
   }
 
   _getTemplate() {
@@ -26,11 +25,7 @@ export class Card {
     });
 
     this._element.querySelector('.element__photo').addEventListener('click', () => {
-      this._handleImageClick(this._title, this._url);
-    });
-
-    document.querySelector('.popup-image__close-icon').addEventListener('click', () => {
-      this._handleCloseClick();
+      this._handleCardClick();
     });
   }
 
@@ -42,21 +37,6 @@ export class Card {
     this._element.querySelector('.element__like-icon').classList.toggle('element__like-icon_active');
   }
 
-  _handleImageClick(title, url) {
-    const popupPhotoItem = document.querySelector('.popup-image__photo');
-    const popupPhotoTitle = document.querySelector('.popup-image__title');
-    const popupPhotoSection = document.querySelector('.popup-image');
-    popupPhotoItem.src = url;
-    popupPhotoItem.alt = title;
-    popupPhotoTitle.textContent = title;
-    openPopup(popupPhotoSection);
-  }
-
-  _handleCloseClick() {
-    const popupPhotoSection = document.querySelector('.popup-image');
-    closePopup(popupPhotoSection);
-  }
-
   generateCard() {
     this._element = this._getTemplate();
     this._element.querySelector('.element__title').textContent = this._title;
@@ -66,3 +46,13 @@ export class Card {
     return this._element;
   }
 }
+
+/*_handleImageClick(title, url) {
+  const popupPhotoItem = document.querySelector('.popup-image__photo');
+  const popupPhotoTitle = document.querySelector('.popup-image__title');
+  const popupPhotoSection = document.querySelector('.popup-image');
+  popupPhotoItem.src = url;
+  popupPhotoItem.alt = title;
+  popupPhotoTitle.textContent = title;
+  openPopup(popupPhotoSection);
+}*/

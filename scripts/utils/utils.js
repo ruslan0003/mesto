@@ -1,5 +1,5 @@
 //функции открытия и закрытия попапов
-
+/*
 function openPopup(popupElement) {
   popupElement.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupByEsc);
@@ -24,14 +24,7 @@ function closePopupByEsc(evt) {
   }
   else return;
 }
-
-//функция закрытия модальных окон кликом на оверлей
-
-function closePopupByOverlayClick(evt) {
-  if (evt.target.classList.contains('popup_opened')) {
-    closePopup(getOpenedPopup());
-  }
-}
+*/
 
 //функция стилизации поля с ошибкой в формах
 
@@ -72,4 +65,4 @@ function clearForm(form) {
   form.reset();
 }
 
-export {closePopup, openPopup, closePopupByOverlayClick, getOpenedPopup, showInputError, hideInputError, formEditSubmitHandler, insertPopupEditFormText, clearForm}
+export {showInputError, hideInputError, formEditSubmitHandler, insertPopupEditFormText, clearForm}
