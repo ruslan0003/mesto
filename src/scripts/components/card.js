@@ -39,9 +39,11 @@ export class Card {
 
   generateCard() {
     this._element = this._getTemplate();
-    this._element.querySelector('.element__title').textContent = this._title;
-    this._element.querySelector('.element__photo').src = this._url;
-    this._element.querySelector('.element__photo').alt = this._title;
+    const photoElement = this._element.querySelector('.element__title');
+    const photoTitle = this._element.querySelector('.element__photo');
+    photoElement.textContent = this._title;
+    photoTitle.src = this._url;
+    photoTitle.alt = this._title;
     this._setEventListeners();
     return this._element;
   }

@@ -9,6 +9,7 @@ import {initialCards} from '../utils/initial-cards.js';
 import {validationConfig} from '../utils/config.js';
 import {popupEditProfile, popupEditOpen, profileEditForm, nameInput, jobInput, nameOutput, jobOutput, popupAddCard, cardAddOpen, cardAddForm, cardTitleInput, cardImageInput, cardsListSection, popupImageSection} from '../utils/constants.js';
 import {PopupWithForm} from '../components/popupWithForm.js';
+import '../../pages/index.css';
 
 const cardsList = new Section({
   items: initialCards,
