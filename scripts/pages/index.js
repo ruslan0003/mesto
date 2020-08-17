@@ -7,8 +7,8 @@ import {FormValidator} from '../components/formValidator.js';
 import {UserInfo} from '../components/userInfo.js';
 import {initialCards} from '../utils/initial-cards.js';
 import {validationConfig} from '../utils/config.js';
-import {popupEditProfile, popupEditOpen, popupEditClose, popupEditSubmit, profileEditForm, nameInput, jobInput, nameOutput, jobOutput, popupAddCard, cardAddOpen, cardAddClose, cardAddSubmit, cardAddForm, cardTitleInput, cardImageInput, cardsListSection, popupImageSection} from '../utils/constants.js';
-import { PopupWithForm } from '../components/popupWithForm.js';
+import {popupEditProfile, popupEditOpen, profileEditForm, nameInput, jobInput, nameOutput, jobOutput, popupAddCard, cardAddOpen, cardAddForm, cardTitleInput, cardImageInput, cardsListSection, popupImageSection} from '../utils/constants.js';
+import {PopupWithForm} from '../components/popupWithForm.js';
 
 const cardsList = new Section({
   items: initialCards,
@@ -77,54 +77,16 @@ const editProfileFormSubmitHandler = () => {
 }
 
 // ОБРАБОТЧИКИ
-// открытие попапа "Редактировать профиль"
 
 popupEditOpen.addEventListener('click', () => {
   editProfileFormClass.open();
   const userData = userInfo.getUserInfo(nameOutput, jobOutput);
   nameInput.value = userData.name;
   jobInput.value = userData.job;
+  profileFormValidator.removeErrors(profileEditForm);
 });
 
 cardAddOpen.addEventListener('click', () => {
   addCardFormClass.open();
-  cardFormValidator.removeErrors(cardAddForm, validationConfig);
+  cardFormValidator.removeErrors(cardAddForm);
 });
-
-//cardAddForm.addEventListener('submit', () => addCardFormSubmitHandler(cardTitleInput, cardImageInput));
-
-/*
-
-popupEditClose.addEventListener('click', () => {
-  closePopup(popupEditProfile);
-});
-
-popupEditSubmit.addEventListener('click', () => {
-  closePopup(popupEditProfile);
-});
-
-profileEditForm.addEventListener('submit', (evt) => formEditSubmitHandler(evt, nameInput, jobInput, nameOutput, jobOutput));
-
-  // открытие, submit, закрытие окна добавления карточек
-
-cardAddSubmit.addEventListener('click', () => {
-  closePopup(popupAddCard);
-});
-
-cardAddOpen.addEventListener('click', () => {
-  clearForm(cardAddForm);
-  //openPopup(popupAddCard);
-  cardFormValidator.removeErrors(cardAddForm, validationConfig);
-});
-
-cardAddForm.addEventListener('submit', (evt) => addCardFormSubmitHandler(evt, cardTitleInput, cardImageInput));
-
-cardAddClose.addEventListener('click', () => {
-  closePopup(popupAddCard);
-});
-
-
-
-  // обработчик клика на оверлей
-
-//window.addEventListener('click', closePopupByOverlayClick);*/

@@ -46,13 +46,3 @@ export class Card {
     return this._element;
   }
 }
-
-/*_handleImageClick(title, url) {
-  const popupPhotoItem = document.querySelector('.popup-image__photo');
-  const popupPhotoTitle = document.querySelector('.popup-image__title');
-  const popupPhotoSection = document.querySelector('.popup-image');
-  popupPhotoItem.src = url;
-  popupPhotoItem.alt = title;
-  popupPhotoTitle.textContent = title;
-  openPopup(popupPhotoSection);
-}*/
