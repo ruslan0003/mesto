@@ -4,18 +4,16 @@ export class UserInfo {
     this._jobInfoSelector = jobInfoSelector;
   }
 
-  getUserInfo() {
-    const userData = {name: this._nameInfo, job: this._jobInfo};
+  getUserInfo(nameText, jobText) {
+    this._values = {
+      name: nameText.textContent,
+      job: jobText.textContent
+    };
+    return this._values;
   }
 
-  setUserInfo() {
-
+  setUserInfo(name, job) {
+    this._nameInfoSelector.textContent = name.value;
+    this._jobInfoSelector.textContent = job.value;
   }
 }
-
-
-/*
-function insertPopupEditFormText(nameInput, jobInput, nameOutput, jobOutput) {
-      nameInput.value = nameOutput.textContent;
-      jobInput.value = jobOutput.textContent;
-    }*/
