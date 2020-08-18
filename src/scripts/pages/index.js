@@ -64,7 +64,7 @@ const addCardFormSubmitHandler = (cardTitle, cardImage) => {
     title: cardTitle.value,
     url: cardImage.value,
     cardSelector: '.element-template',
-    click: () => handleCardClick(cardTitle.value, cardImage.value)
+    click: () => handleCardClick(card._title, card._url)
   });
   const cardElement = card.generateCard();
   const cardsListSelector = document.querySelector(cardsListSection);
