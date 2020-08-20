@@ -16,3 +16,5 @@ export const cardTitleInput = cardAddForm.querySelector('.form__input_type_title
 export const cardImageInput = cardAddForm.querySelector('.form__input_type_url');
 export const cardsListSection = '.elements';
 export const popupImageSection = document.querySelector('.popup-image');
+export const popupPhotoItem = document.querySelector('.popup-image__photo');
+export const popupPhotoTitle = document.querySelector('.popup-image__title');

@@ -1,5 +1,3 @@
-import {hideInputError, showInputError} from '../utils/utils.js';
-
 export class FormValidator {
   constructor ({inputSelector, inputErrorClass, errorClass, inactiveButtonClass, submitButtonSelector}, form) {
     this._form = form;
@@ -18,14 +16,30 @@ export class FormValidator {
     });
   }
 
+  showInputError (form, input, errorMessage, inputErrorClass, errorClass) {
+    const formErrorMessage = form.querySelector(`#${input.id}-error`);
+    input.classList.add(inputErrorClass);
+    formErrorMessage.classList.add(errorClass);
+    formErrorMessage.textContent = errorMessage;
+    }
+
+    // функция отмены стилизации поля с ошибкой в формах
+
+    hideInputError (form, input, inputErrorClass, errorClass) {
+    const formErrorMessage = form.querySelector(`#${input.id}-error`);
+    input.classList.remove(inputErrorClass);
+    formErrorMessage.classList.remove(errorClass);
+    formErrorMessage.textContent = '';
+    }
+
 // приватный метод проверки валидности формы
 
   _isFormValid (form, input) {
     if (!input.validity.valid) {
-    showInputError(form, input, input.validationMessage, this._inputErrorClass, this._errorClass);
+    this.showInputError(form, input, input.validationMessage, this._inputErrorClass, this._errorClass);
     }
     else {
-    hideInputError(form, input, this._inputErrorClass, this._errorClass);
+    this.hideInputError(form, input, this._inputErrorClass, this._errorClass);
     }
   }
 
@@ -46,11 +60,13 @@ export class FormValidator {
     const allInputList = Array.from(form.querySelectorAll(this._inputSelector));
     //делаем обход массива инпутов и у каждого убираем класс с ошибкой
     allInputList.forEach((inputElement) => {
-        hideInputError (form, inputElement, this._inputErrorClass, this._errorClass);
+      this.hideInputError (form, inputElement, this._inputErrorClass, this._errorClass);
     });
     const button = form.querySelector(this._submitButtonSelector);
     this._toggleButtonState(allInputList, button, this._inactiveButtonClass);
   }
+
+  // функция стилизации поля с ошибкой в формах
 
   _setEventListeners(form, inputSelector, submitButtonSelector) {
     const allInputList = Array.from(form.querySelectorAll(inputSelector));

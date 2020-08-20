@@ -7,19 +7,25 @@ import {FormValidator} from '../components/formValidator.js';
 import {UserInfo} from '../components/userInfo.js';
 import {initialCards} from '../utils/initial-cards.js';
 import {validationConfig} from '../utils/config.js';
-import {popupEditProfile, popupEditOpen, profileEditForm, nameInput, jobInput, nameOutput, jobOutput, popupAddCard, cardAddOpen, cardAddForm, cardTitleInput, cardImageInput, cardsListSection, popupImageSection} from '../utils/constants.js';
+import {popupEditProfile, popupEditOpen, profileEditForm, nameInput, jobInput, nameOutput, jobOutput, popupAddCard, cardAddOpen, cardAddForm, cardTitleInput, cardImageInput, cardsListSection, popupImageSection, popupPhotoItem, popupPhotoTitle} from '../utils/constants.js';
 import {PopupWithForm} from '../components/popupWithForm.js';
-import '../../pages/index.css';
+import './index.css';
+
+// функция создания нового экземпляра карточки
+
+function createCardInstance(imageTitle, imageUrl) {
+  return new Card({
+    title: imageTitle,
+    url: imageUrl,
+    cardSelector: '.element-template',
+    click: () => handleCardClick(imageTitle, imageUrl)
+  });
+ }
 
 const cardsList = new Section({
-  items: initialCards,
+  items: initialCards.reverse(),
   renderer: (item) => {
-    const card = new Card({
-      title: item.title,
-      url: item.url,
-      cardSelector: '.element-template',
-      click: () => handleCardClick(item.title, item.url)
-    });
+    const card = createCardInstance(item.title, item.url);
     const cardElement = card.generateCard();
     cardsList.addItem(cardElement);
     },
@@ -27,7 +33,7 @@ const cardsList = new Section({
 cardsListSection);
 cardsList.renderItems();
 
-const popupWithImageClass = new PopupWithImage(popupImageSection);
+const popupWithImageClass = new PopupWithImage(popupImageSection, popupPhotoItem, popupPhotoTitle);
 
 function handleCardClick(title, url) {
   popupWithImageClass.open(title, url);
@@ -35,11 +41,13 @@ function handleCardClick(title, url) {
 
 const editProfileFormClass = new PopupWithForm({
   popupSelector: popupEditProfile,
+  form: profileEditForm,
   submit: () => editProfileFormSubmitHandler(nameInput, jobInput)
 });
 
 const addCardFormClass = new PopupWithForm({
   popupSelector: popupAddCard,
+  form: cardAddForm,
   submit: () => addCardFormSubmitHandler(cardTitleInput, cardImageInput)
 });
 
@@ -60,15 +68,9 @@ const userInfo = new UserInfo({
 // функция добавления пользовательских фотографий
 
 const addCardFormSubmitHandler = (cardTitle, cardImage) => {
-  const card = new Card ({
-    title: cardTitle.value,
-    url: cardImage.value,
-    cardSelector: '.element-template',
-    click: () => handleCardClick(card._title, card._url)
-  });
+  const card = createCardInstance(cardTitle.value, cardImage.value);
   const cardElement = card.generateCard();
-  const cardsListSelector = document.querySelector(cardsListSection);
-  cardsListSelector.prepend(cardElement);
+  cardsList.addItem(cardElement);
 }
 
 // функция подстановки введенных значений в профиль пользователя
