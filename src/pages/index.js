@@ -43,6 +43,17 @@ const userInfo = new UserInfo({
   jobInfoSelector: jobOutput
 });
 
+// функция создания нового экземпляра карточки
+
+function createCardInstance(imageTitle, imageUrl) {
+  return new Card({
+    title: imageTitle,
+    url: imageUrl,
+    cardSelector: '.element-template',
+    click: () => handleCardClick(imageTitle, imageUrl)
+  });
+}
+
 // отображение исходного массива карточек, подгружаемого с сервера
 
 cardsApi.getData().then(cards => {
@@ -79,18 +90,6 @@ cardsApi.getData().then(cards => {
     cardFormValidator.removeErrors(cardAddForm);
   });
 });
-
-
-// функция создания нового экземпляра карточки
-
-function createCardInstance(imageTitle, imageUrl) {
-  return new Card({
-    title: imageTitle,
-    url: imageUrl,
-    cardSelector: '.element-template',
-    click: () => handleCardClick(imageTitle, imageUrl)
-  });
-}
 
 const popupWithImageClass = new PopupWithImage(popupImageSection, popupPhotoItem, popupPhotoTitle);
 
