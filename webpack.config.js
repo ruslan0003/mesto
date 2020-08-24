@@ -47,5 +47,6 @@ module.exports = {
       template: 'src/index.html'
     }),
     new MiniCssExtractPlugin()
-  ]
+  ],
+  devtool: 'inline-source-map'
 };
