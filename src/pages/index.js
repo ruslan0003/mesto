@@ -31,6 +31,10 @@ const userData = new Api({
   }
 })
 
+function putLikeToCard() {
+  cardsApi.likeCard
+}
+
 // отображение данных о пользователе, подгружаемых с сервера
 
 userData.getData().then(res => {
@@ -45,22 +49,26 @@ const userInfo = new UserInfo({
 
 // функция создания нового экземпляра карточки
 
-function createCardInstance(imageTitle, imageUrl) {
+function createCardInstance(imageTitle, imageUrl, likesNumber, imageId) {
   return new Card({
     title: imageTitle,
     url: imageUrl,
     cardSelector: '.element-template',
-    click: () => handleCardClick(imageTitle, imageUrl)
+    click: () => handleCardClick(imageTitle, imageUrl),
+    likes: likesNumber,
+    api: cardsApi,
+    id: imageId
   });
 }
 
 // отображение исходного массива карточек, подгружаемого с сервера
 
-cardsApi.getData().then(cards => {
+cardsApi.getData()
+.then(cards => {
   const cardsList = new Section({
     items: cards.reverse(),
     renderer: (item) => {
-      const card = createCardInstance(item.name, item.link);
+      const card = createCardInstance(item.name, item.link, item.likes.length, item._id);
       const cardElement = card.generateCard();
       cardsList.addItem(cardElement);
     },
@@ -70,11 +78,13 @@ cardsApi.getData().then(cards => {
 
   // функция добавления пользовательских фотографий и их отправка на сервер
 
-  const addCardFormSubmitHandler = (cardTitle, cardImage) => {
-    const card = createCardInstance(cardTitle.value, cardImage.value);
+  const addCardFormSubmitHandler = (cardTitle, cardImage, cardLikes) => {
+    cardLikes = [];
+
+    const card = createCardInstance(cardTitle.value, cardImage.value, cardLikes.length);
     const cardElement = card.generateCard();
     cardsList.addItem(cardElement);
-    cardsApi.createCard(cardTitle.value, cardImage.value);
+    cardsApi.createCard(cardTitle.value, cardImage.value, cardLikes.length);
   }
 
   const addCardFormClass = new PopupWithForm({
@@ -128,3 +138,5 @@ popupEditOpen.addEventListener('click', () => {
   jobInput.value = userData.job;
   profileFormValidator.removeErrors(profileEditForm);
 });
+
+
