@@ -1,5 +1,5 @@
 export class Card {
-  constructor ({title, url, cardSelector, click, likes, api, id, submitPopup, cardDelete, ownerId, myId}) {
+  constructor({ title, url, cardSelector, click, likes, api, id, submitPopup, ownerId, myId }) {
     this._title = title;
     this._url = url;
     this._cardSelector = cardSelector;
@@ -8,7 +8,6 @@ export class Card {
     this._api = api;
     this._id = id;
     this._submitPopup = submitPopup;
-    this._handleDeleteClick = cardDelete;
     this._ownerId = ownerId;
     this._myId = myId;
   }
@@ -22,10 +21,18 @@ export class Card {
     return cardElement;
   }
 
+
   _setEventListeners() {
-    this._element.querySelector('.element__delete-button').addEventListener('click', () => {
-      this._handleDeleteClick();
-      this.deleteSubmit();
+    const deleteButton = this._element.querySelector('.element__delete-button');
+    deleteButton.addEventListener('click', () => {
+      this._submitPopup.setSubmitAction(() =>
+        this._api.deleteCard(this._id)
+          .then(res => this._element.remove(), this._submitPopup.close())
+          .catch(err => {
+          console.log(err);
+        })
+      );
+      this._submitPopup.open();
     });
 
     this._element.querySelector('.element__like-button').addEventListener('click', () => {
@@ -37,35 +44,30 @@ export class Card {
     });
   }
 
-  deleteSubmit() {
-      this._api.deleteCard(this._id)
-      .then(res => this._element.remove());
-  }
-
   _handleLikeClick() {
     const likeIcon = this._element.querySelector('.element__like-icon');
     const numberOfLikes = this._element.querySelector('.element__like-number');
     likeIcon.classList.toggle('element__like-icon_active');
     if (!likeIcon.classList.contains('element__like-icon_active')) {
       this._api.dislikeCard(this._id)
-      .then((res) => {
-        numberOfLikes.textContent = `${res.likes.length}`;
-      });
+        .then((res) => {
+          numberOfLikes.textContent = `${res.likes.length}`;
+        });
     }
     else {
       this._api.likeCard(this._id)
-      .then((res) => {
-        numberOfLikes.textContent = `${res.likes.length}`;
-      });
+        .then((res) => {
+          numberOfLikes.textContent = `${res.likes.length}`;
+        });
     }
   }
 
-  /*isOwner() {
-    const myId = this._api.getData().then((res) => {
-      return res.owner._id;
-    })
-    .then(res => console.log(res))
-  }*/
+  isOwner(myUserId) {
+    const deleteButton = this._element.querySelector('.element__delete-button');
+    if (myUserId !== this._ownerId) {
+      deleteButton.remove();
+    }
+  }
 
   generateCard() {
     this._element = this._getTemplate();
