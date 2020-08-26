@@ -11,15 +11,14 @@ export class Api {
       });
   }
 
-  createCard(cardTitle, cardUrl, cardLikes) {
+  createCard(cardTitle, cardUrl) {
     return fetch(this._baseUrl,
       {
         headers: this._headers,
         method: 'POST',
         body: JSON.stringify({
           name: cardTitle,
-          link: cardUrl,
-          likes: cardLikes
+          link: cardUrl
         })
       })
       .then((res) => {
@@ -38,8 +37,8 @@ export class Api {
     });
   }
 
-  dislikeCard() {
-    return fetch(this._baseUrl,
+  dislikeCard(cardId) {
+    return fetch(`${this._baseUrl}/likes/${cardId}`,
       {
         headers: this._headers,
         method: 'DELETE',
@@ -58,6 +57,17 @@ export class Api {
           name: userName,
           about: userJob
         })
+      })
+      .then((res) => {
+        return res.json();
+    });
+  }
+
+  deleteCard(cardId) {
+    return fetch(`${this._baseUrl}/likes/${cardId}`,
+      {
+        headers: this._headers,
+        method: 'DELETE',
       })
       .then((res) => {
         return res.json();

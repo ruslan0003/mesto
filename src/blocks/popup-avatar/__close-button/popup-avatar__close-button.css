@@ -1,0 +1,28 @@
+.popup-avatar__close-button {
+  position: absolute;
+  width: 41px;
+  height: 41px;
+  top: -34px;
+  right: -34px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+  background: none;
+  transition: opacity 0.2s linear;
+}
+
+.popup-avatar__close-button:hover {
+  opacity: .6;
+}
+
+@media screen and (max-width: 480px) {
+  .popup-avatar__close-button {
+    top: -28px;
+    right: 12px;
+    width: 30px;
+    height: 30px;
+  }
+}

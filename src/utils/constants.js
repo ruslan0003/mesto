@@ -18,3 +18,7 @@ export const cardsListSection = '.elements';
 export const popupImageSection = document.querySelector('.popup-image');
 export const popupPhotoItem = document.querySelector('.popup-image__photo');
 export const popupPhotoTitle = document.querySelector('.popup-image__title');
+export const popupSubmitOpen = document.querySelector('.element__delete-button');
+export const popupSubmit = document.querySelector('.popup-submit');
+export const popupSubmitForm = document.querySelector('.popup-submit__form');
+export const popupSubmitSubmit = popupSubmitForm.querySelector('.popup-submit__submit-button');

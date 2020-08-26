@@ -6,9 +6,10 @@ import { PopupWithImage } from '../components/popupWithImage.js';
 import { FormValidator } from '../components/formValidator.js';
 import { UserInfo } from '../components/userInfo.js';
 import { validationConfig } from '../utils/config.js';
-import { popupEditProfile, popupEditOpen, profileEditForm, nameInput, jobInput, nameOutput, jobOutput, popupAddCard, cardAddOpen, cardAddForm, cardTitleInput, cardImageInput, cardsListSection, popupImageSection, popupPhotoItem, popupPhotoTitle } from '../utils/constants.js';
+import { popupEditProfile, popupEditOpen, profileEditForm, nameInput, jobInput, nameOutput, jobOutput, popupAddCard, cardAddOpen, cardAddForm, cardTitleInput, cardImageInput, cardsListSection, popupImageSection, popupPhotoItem, popupPhotoTitle, popupSubmitForm, popupSubmitOpen, popupSubmitSubmit, popupSubmit } from '../utils/constants.js';
 import { PopupWithForm } from '../components/popupWithForm.js';
 import { Api } from '../components/api.js';
+import { PopupWithSubmit } from '../components/popupWithSubmit.js';
 import './index.css';
 
 // подключение API для карточек
@@ -31,10 +32,6 @@ const userData = new Api({
   }
 })
 
-function putLikeToCard() {
-  cardsApi.likeCard
-}
-
 // отображение данных о пользователе, подгружаемых с сервера
 
 userData.getData().then(res => {
@@ -49,7 +46,7 @@ const userInfo = new UserInfo({
 
 // функция создания нового экземпляра карточки
 
-function createCardInstance(imageTitle, imageUrl, likesNumber, imageId) {
+function createCardInstance(imageTitle, imageUrl, likesNumber, imageId, ownerId, myId) {
   return new Card({
     title: imageTitle,
     url: imageUrl,
@@ -57,7 +54,11 @@ function createCardInstance(imageTitle, imageUrl, likesNumber, imageId) {
     click: () => handleCardClick(imageTitle, imageUrl),
     likes: likesNumber,
     api: cardsApi,
-    id: imageId
+    id: imageId,
+    submitPopup: popupSubmit,
+    cardDelete: () => handleDeleteClick(),
+    ownerId: ownerId,
+    myId: myId
   });
 }
 
@@ -68,7 +69,7 @@ cardsApi.getData()
   const cardsList = new Section({
     items: cards.reverse(),
     renderer: (item) => {
-      const card = createCardInstance(item.name, item.link, item.likes.length, item._id);
+      const card = createCardInstance(item.name, item.link, item.likes.length, item._id, item.owner._id);
       const cardElement = card.generateCard();
       cardsList.addItem(cardElement);
     },
@@ -78,13 +79,13 @@ cardsApi.getData()
 
   // функция добавления пользовательских фотографий и их отправка на сервер
 
-  const addCardFormSubmitHandler = (cardTitle, cardImage, cardLikes) => {
-    cardLikes = [];
-
-    const card = createCardInstance(cardTitle.value, cardImage.value, cardLikes.length);
-    const cardElement = card.generateCard();
-    cardsList.addItem(cardElement);
-    cardsApi.createCard(cardTitle.value, cardImage.value, cardLikes.length);
+  const addCardFormSubmitHandler = (cardTitle, cardImage) => {
+    cardsApi.createCard(cardTitle.value, cardImage.value).
+    then(data => {
+      const card = createCardInstance(data.name, data.link, data.likes.length, data._id, data.owner._id);
+      const cardElement = card.generateCard();
+      cardsList.addItem(cardElement);
+    })
   }
 
   const addCardFormClass = new PopupWithForm({
@@ -113,8 +114,23 @@ const editProfileFormClass = new PopupWithForm({
   submit: () => editProfileFormSubmitHandler(nameInput, jobInput)
 });
 
+const submitFormClass = new PopupWithSubmit({
+  popupSelector: popupSubmit,
+  form: popupSubmitForm,
+  submit: () => deleteCardFormSubmitHandler()
+});
+
 editProfileFormClass.setEventListeners();
 popupWithImageClass.setEventListeners();
+submitFormClass.setEventListeners();
+
+function handleDeleteClick() {
+  submitFormClass.open();
+}
+
+const deleteCardFormSubmitHandler = (evt) => {
+  deleteSubmit(evt);
+}
 
 const profileFormValidator = new FormValidator(validationConfig, profileEditForm);
 profileFormValidator.enableValidation();
@@ -138,5 +154,4 @@ popupEditOpen.addEventListener('click', () => {
   jobInput.value = userData.job;
   profileFormValidator.removeErrors(profileEditForm);
 });
-
 

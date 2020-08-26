@@ -6,6 +6,9 @@
 @import url(./__card/profile__card.css);
 @import url(./__name-button-container/profile__name-button-container.css);
 @import url(./__position/profile__position.css);
+@import url(./__change-avatar-button/profile__change-avatar-button.css);
+@import url(./__change-avatar-icon/profile__change-avatar-icon.css);
+@import url(./__avatar-wrap/profile__avatar-wrap.css);
 
 .profile {
   width: 100%;

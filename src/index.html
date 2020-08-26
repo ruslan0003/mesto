@@ -15,7 +15,12 @@
   <main>
     <section class="profile">
       <div class="profile__card">
-        <img class="profile__avatar" src="images/avatar.jpg" alt="#">
+        <div class="profile__avatar-wrap">
+          <img class="profile__avatar" src="images/avatar.jpg" alt="Аватар пользователя">
+          <button class="profile__change-avatar-button">
+            <img class="profile__change-avatar-icon" src="images/pencil-icon.svg" alt="Иконка кнопки смены аватара">
+          </button>
+        </div>
         <div>
           <div class="profile__name-button-container">
             <h1 class="profile__name"></h1>
@@ -90,6 +95,19 @@
     </figure>
   </section>
 
+  <section class="popup popup-submit">
+    <div class="popup-submit__container">
+      <button class="popup-submit__close-button">
+        <img class="popup-submit__close-icon close-icon" src="./images/close-icon.svg"
+          alt="Иконка закрытия модального окна">
+      </button>
+      <h3 class="popup-submit__title">Вы уверены?</h3>
+      <form class="popup-submit__form form" name="submit-form" novalidate>
+        <button class="form__submit popup-submit__submit-button" type="submit" value="Подтвердить">Да</button>
+      </form>
+    </div>
+  </section>
+
   <template class="element-template">
     <li class="element">
       <button class="element__delete-button">
@@ -102,7 +120,7 @@
           <button class="element__like-button">
             <div class="element__like-icon"></div>
           </button>
-          <p class="element__like-number">10</p>
+          <p class="element__like-number">#</p>
         </div>
       </div>
     </li>

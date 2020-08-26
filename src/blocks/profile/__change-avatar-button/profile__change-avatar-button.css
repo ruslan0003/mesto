@@ -1,0 +1,19 @@
+.profile__change-avatar-button {
+  background: black;
+  border: none;
+  min-width: 120px;
+  min-height: 120px;
+  border-radius: 100px;
+  opacity: 0;
+  z-index: 0;
+  position: absolute;
+  top: 38px;
+  left: 0;
+  cursor: pointer;
+  outline: none;
+}
+
+.profile__change-avatar-button:hover {
+  opacity: 0.8;
+  z-index: 1;
+}
