@@ -23,11 +23,21 @@ export class PopupWithForm extends Popup {
     return this._formValues;
   }
 
+  _textLoading(isLoading) {
+    const submitButton = this._form.querySelector('.form__submit');
+    if(isLoading) {
+      submitButton.textContent = 'Сохранение...';
+    }
+    else {
+      submitButton.textContent = 'Сохранение'
+    }
+  }
+
   setEventListeners() {
     super.setEventListeners();
     this._popupSelector.addEventListener('submit', (evt) => {
       evt.preventDefault();
-
+      this._textLoading(true);
       // добавим вызов функции _handleFormSubmit
       // передадим ей объект — результат работы _getInputValues
       this._handleSubmitButton(this._getInputValues());
@@ -38,5 +48,10 @@ export class PopupWithForm extends Popup {
   close() {
     super.close();
     this._form.reset();
+  }
+
+  open() {
+    super.open();
+    this._textLoading(false);
   }
 }

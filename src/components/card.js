@@ -52,12 +52,16 @@ export class Card {
       this._api.dislikeCard(this._id)
         .then((res) => {
           numberOfLikes.textContent = `${res.likes.length}`;
+        }).catch((err) => {
+          console.log(err);
         });
     }
     else {
       this._api.likeCard(this._id)
         .then((res) => {
           numberOfLikes.textContent = `${res.likes.length}`;
+        }).catch((err) => {
+          console.log(err);
         });
     }
   }

@@ -16,7 +16,7 @@
     <section class="profile">
       <div class="profile__card">
         <div class="profile__avatar-wrap">
-          <img class="profile__avatar" src="images/avatar.jpg" alt="Аватар пользователя">
+          <img class="profile__avatar" src="#" alt="Аватар пользователя">
           <button class="profile__change-avatar-button">
             <img class="profile__change-avatar-icon" src="images/pencil-icon.svg" alt="Иконка кнопки смены аватара">
           </button>
@@ -104,6 +104,22 @@
       <h3 class="popup-submit__title">Вы уверены?</h3>
       <form class="popup-submit__form form" name="submit-form" novalidate>
         <button class="form__submit popup-submit__submit-button form__submit-button_no-input" type="submit" value="Подтвердить">Да</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="popup popup-avatar">
+    <div class="popup-avatar__container">
+      <button class="popup-avatar__close-button">
+        <img class="popup-avatar__close-icon close-icon" src="./images/close-icon.svg"
+          alt="Иконка закрытия модального окна">
+      </button>
+      <h3 class="popup-avatar__title">Обновить аватар</h3>
+      <form class="popup-avatar__form form" name="edit-form" novalidate>
+        <input class="form__input form__input_type_avatar_url" id="avatar-url" name="avatar-url" placeholder="Ссылка на аватар"
+          type="url" required>
+        <span class="form__input-error" id="avatar-url-error"></span>
+        <button class="form__submit popup-avatar__submit-button" type="submit" value="Создать">Сохранить</button>
       </form>
     </div>
   </section>

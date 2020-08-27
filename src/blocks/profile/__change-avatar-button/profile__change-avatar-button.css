@@ -1,8 +1,8 @@
 .profile__change-avatar-button {
   background: black;
   border: none;
-  min-width: 120px;
-  min-height: 120px;
+  width: 120px;
+  height: 120px;
   border-radius: 100px;
   opacity: 0;
   z-index: 0;
@@ -11,6 +11,7 @@
   left: 0;
   cursor: pointer;
   outline: none;
+  transition: opacity 0.2s linear;
 }
 
 .profile__change-avatar-button:hover {

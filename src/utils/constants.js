@@ -21,3 +21,9 @@ export const popupPhotoTitle = document.querySelector('.popup-image__title');
 export const popupSubmitOpen = document.querySelector('.element__delete-button');
 export const popupSubmit = document.querySelector('.popup-submit');
 export const popupSubmitForm = document.querySelector('.popup-submit__form');
+export const popupAvatar = document.querySelector('.popup-avatar');
+export const changeAvatarOpen = document.querySelector('.profile__change-avatar-button');
+export const changeAvatarForm = document.querySelector('.popup-avatar__form');
+export const avatarLinkInput = changeAvatarForm.querySelector('.form__input_type_avatar_url');
+export const avatarImage = document.querySelector('.profile__avatar');
+

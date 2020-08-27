@@ -6,8 +6,11 @@ export class Api {
 
   getData() {
     return fetch(this._baseUrl, { headers: this._headers })
-      .then((res) => {
-        return res.json();
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
       });
   }
 
@@ -21,9 +24,12 @@ export class Api {
           link: cardUrl
         })
       })
-      .then((res) => {
-        return res.json();
-    });
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
   }
 
   likeCard(cardId) {
@@ -32,9 +38,12 @@ export class Api {
         headers: this._headers,
         method: 'PUT',
       })
-      .then((res) => {
-        return res.json()
-    });
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
   }
 
   dislikeCard(cardId) {
@@ -43,9 +52,12 @@ export class Api {
         headers: this._headers,
         method: 'DELETE',
       })
-      .then((res) => {
-        return res.json();
-    });
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
   }
 
   editProfile(userName, userJob) {
@@ -58,9 +70,12 @@ export class Api {
           about: userJob
         })
       })
-      .then((res) => {
-        return res.json();
-    });
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
   }
 
   deleteCard(cardId) {
@@ -69,9 +84,29 @@ export class Api {
         headers: this._headers,
         method: 'DELETE',
       })
-      .then((res) => {
-        return res.json();
-    });
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
+  }
+
+  changeAvatar(link) {
+    return fetch(`${this._baseUrl}/avatar`,
+      {
+        headers: this._headers,
+        method: 'PATCH',
+        body: JSON.stringify({
+          avatar: link,
+        })
+      })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
   }
 
 }
