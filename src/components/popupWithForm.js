@@ -29,7 +29,7 @@ export class PopupWithForm extends Popup {
       submitButton.textContent = 'Сохранение...';
     }
     else {
-      submitButton.textContent = 'Сохранение'
+      submitButton.textContent = 'Сохранить'
     }
   }
 
@@ -41,17 +41,16 @@ export class PopupWithForm extends Popup {
       // добавим вызов функции _handleFormSubmit
       // передадим ей объект — результат работы _getInputValues
       this._handleSubmitButton(this._getInputValues());
-      this.close();
     });
   }
 
   close() {
     super.close();
     this._form.reset();
+    this._textLoading(false);
   }
 
   open() {
     super.open();
-    this._textLoading(false);
   }
 }

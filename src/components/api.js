@@ -46,6 +46,20 @@ export class Api {
       });
   }
 
+  getLikes(cardId) {
+    return fetch(`${this._baseUrl}/likes/${cardId}`,
+      {
+        headers: this._headers,
+        method: 'PUT',
+      })
+      .then(res => {
+        if (res.ok) {
+          return res.json();
+        }
+        return Promise.reject(`Ошибка: ${res.status}`);
+      });
+  }
+
   dislikeCard(cardId) {
     return fetch(`${this._baseUrl}/likes/${cardId}`,
       {

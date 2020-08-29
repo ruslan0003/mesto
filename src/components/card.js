@@ -21,13 +21,12 @@ export class Card {
     return cardElement;
   }
 
-
   _setEventListeners() {
     const deleteButton = this._element.querySelector('.element__delete-button');
     deleteButton.addEventListener('click', () => {
       this._submitPopup.setSubmitAction(() =>
         this._api.deleteCard(this._id)
-          .then(res => this._element.remove(), this._submitPopup.close())
+          .then(res => { this._element.remove(); this._submitPopup.close() })
           .catch(err => {
           console.log(err);
         })

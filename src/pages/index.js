@@ -44,7 +44,8 @@ userDataApi.getData().then(res => {
 
 const userInfo = new UserInfo({
   nameInfoSelector: nameOutput,
-  jobInfoSelector: jobOutput
+  jobInfoSelector: jobOutput,
+  userAvatarSelector: avatarImage
 });
 
 const popupWithSubmitClass = new PopupWithSubmit(popupSubmit);
@@ -94,6 +95,7 @@ Promise.all([
         const cardElement = card.generateCard();
         cardsList.addItem(cardElement);
         card.isOwner(userData._id);
+        addCardFormClass.close();
       }).catch((err) => {
         console.log(err);
       });
@@ -135,6 +137,7 @@ Promise.all([
     userDataApi.changeAvatar(avatarLinkInput.value)
     .then((res) => {
       avatarImage.src = res.avatar;
+      changeAvatarPopupClass.close();
     }).catch((err) => {
       console.log(err);
     });
@@ -158,6 +161,7 @@ Promise.all([
   const editProfileFormSubmitHandler = () => {
     userInfo.setUserInfo(nameInput, jobInput);
     userDataApi.editProfile(nameInput.value, jobInput.value);
+    editProfileFormClass.close();
   }
 
    // ОБРАБОТЧИКИ

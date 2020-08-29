@@ -1,7 +1,8 @@
 export class UserInfo {
-  constructor ({nameInfoSelector, jobInfoSelector}) {
+  constructor ({nameInfoSelector, jobInfoSelector, userAvatarSelector}) {
     this._nameInfoSelector = nameInfoSelector;
     this._jobInfoSelector = jobInfoSelector;
+    this._userAvatarSelector = userAvatarSelector;
   }
 
   getUserInfo(nameText, jobText) {
